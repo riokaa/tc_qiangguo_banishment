@@ -1,6 +1,6 @@
 ﻿function mod_控制逻辑()
     while(true)
-		mod_获取积分情况()
+        mod_获取积分情况()
         if(score[1] < score_max_limit[1])  //阅读文章
             mod_执行阅读文章()
         elseif(score[2] < score_max_limit[2])  //观看视频
@@ -35,7 +35,7 @@ function mod_获取积分情况()
     logi("文章学习时长积分: " & result[3])
     logi("视频学习时长积分: " & result[4])
     for(var i = 0; i < 5; i++)
-		score[i] = int(strleft(result[i], strfind(result[i], "/") - 1))
+        score[i] = int(strleft(result[i], strfind(result[i], "/") - 1))
     end
     logi("积分情况获取完毕.")
 end
@@ -48,7 +48,7 @@ function mod_执行阅读文章()
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(2000)
     logi("\"主页\"页面加载完毕.")
     
     //读取页面新闻标题们
@@ -112,19 +112,19 @@ function mod_执行观看视频()
     logi("\"学习电视台\"页面加载完毕.")
     
     //随机选择视频
-	webhtmlclick("web", "value:第一频道")
+    webhtmlclick("web", "value:第一频道")
     var random_num = rnd(1,3)
     select(random_num)
         case 1
-			webhtmlclick("web", "value:习近平活动视频集")
+        webhtmlclick("web", "value:习近平活动视频集")
         case 2
-			webhtmlclick("web", "value:专题报道")
+        webhtmlclick("web", "value:专题报道")
         case 3
-			webhtmlclick("web", "value:新闻联播")
+        webhtmlclick("web", "value:新闻联播")
     end
-        
+    
     //读取页面新闻标题们
-    sleep(1000)
+    sleep(2000)
     var result = webhtmlget("web", "innerHtml", "class:screen")
     var result_id = array()
     var result_title = array()

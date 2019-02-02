@@ -17,6 +17,26 @@
     logi("恭喜你!今日网页端任务已全部完成.")
 end
 
+function mod_表格写(result)
+    gridsetcontent("excel", 1, 0, "每日签到")
+    gridsetcontent("excel", 2, 0, "文章阅读数")
+    gridsetcontent("excel", 3, 0, "视频观看数")
+    gridsetcontent("excel", 4, 0, "文章阅读时长")
+    gridsetcontent("excel", 5, 0, "视频观看时长")
+    gridsetcontent("excel", 1, 1, result[0])
+    gridsetcontent("excel", 2, 1, result[1])
+    gridsetcontent("excel", 3, 1, result[2])
+    gridsetcontent("excel", 4, 1, result[3])
+    gridsetcontent("excel", 5, 1, result[4])
+    var fenmu = 1, fenzi = 0
+    for(var i = 0; i < arraysize(score_max_limit); i++)
+        fenmu = fenmu + score_max_limit[i]
+        fenzi = fenzi + score[i]
+    end
+    var percent = int(fenzi*100/fenmu)
+    progresssetprogress("bar", percent)
+    logd(fenzi & "/" & fenmu & "=" & percent & "%")
+end
 function mod_获取积分情况()
     logi("————获取积分情况————")
     webgo("web", url_mypoints)
@@ -28,16 +48,17 @@ function mod_获取积分情况()
     logi("我的积分页面加载完毕.")
     var result = webhtmlget("web", "innerHtml", "class:my-points-content")
     result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)
-    //traceprint(result)
-    logi("每日登陆积分: " & result[0])
-    logi("阅读文章积分: " & result[1])
-    logi("观看视频积分: " & result[2])
-    logi("文章学习时长积分: " & result[3])
-    logi("视频学习时长积分: " & result[4])
+    logd("每日登陆积分: " & result[0])
+    logd("阅读文章积分: " & result[1])
+    logd("观看视频积分: " & result[2])
+    logd("文章学习时长积分: " & result[3])
+    logd("视频学习时长积分: " & result[4])
     for(var i = 0; i < 5; i++)
         score[i] = int(strleft(result[i], strfind(result[i], "/") - 1))
     end
     logi("积分情况获取完毕.")
+    threadbegin("mod_表格写", result)
+    sleep(1000)
 end
 
 function mod_执行阅读文章()
@@ -48,7 +69,7 @@ function mod_执行阅读文章()
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(2000)
+    sleep(1000)
     logi("\"主页\"页面加载完毕.")
     
     //读取页面新闻标题们
@@ -122,14 +143,17 @@ function mod_执行观看视频()
         case 3
         webhtmlclick("web", "value:新闻联播")
     end
+    while(!webloadcomplete("web"))
+        sleep(500)
+    end
     
     //读取页面新闻标题们
-    sleep(2000)
+    sleep(1000)
     var result = webhtmlget("web", "innerHtml", "class:screen")
     var result_id = array()
     var result_title = array()
-    var regInFrontOfTitle = "<div\\stitle=\"\"\\sclass=\"word-item\"\\sid=\"[0-9a-zA-Z]+\".*?\">"
-    var regTitle = "([\\x{4e00}-\\x{9fa5}]|[\"|\\x{300a}|\\x{300b}|\\x{2014}|\\x{ff0c}|\\x{201c}|\\x{201d}|\\x{3001}])([\\x{4e00}-\\x{9fa5}]|[0-9]|[\"|\\x{300a}|\\x{300b}|\\x{2014}|\\x{ff0c}|\\x{201c}|\\x{201d}|\\x{3001}]){8,}"
+    var regInFrontOfTitle = "<div.*?\\sclass=\"word-item\".*?\">"
+    var regTitle = "([\\x{4e00}-\\x{9fa5}]|[\"|\\x{300a}|\\x{300b}|\\x{2014}|\\x{ff0c}|\\x{201c}|\\x{201d}|\\x{3001}])([\\x{4e00}-\\x{9fa5}]|[0-9]|[\"|\\x{300a}|\\x{300b}|\\x{2014}|\\x{ff0c}|\\x{201c}|\\x{201d}|\\x{3001}|\\s]){8,}"
     var regBehindTitle = "</div>"
     result = regexmatchtext(result, regInFrontOfTitle & regTitle & regBehindTitle, false, true, true, true)  //获取所有文章标题
     for(var i = 0; i < arraysize(result); i++)

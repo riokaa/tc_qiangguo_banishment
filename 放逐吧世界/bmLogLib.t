@@ -1,7 +1,7 @@
 ﻿
 function logd(content)
+    traceprint(timenow() & "[DEBUG]:" & content)
     if(DEBUG)
-        traceprint(timenow() & "[DEBUG]:" & content)
         editadd(timenow() & "[DEBUG]:" & content)
     end
 end

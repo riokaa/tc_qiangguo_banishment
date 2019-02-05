@@ -1,14 +1,14 @@
 ﻿function mod_控制逻辑()
     while(true)
         mod_获取积分情况()
-        if(score[1] < score_max_limit[1])  //阅读文章
-            mod_执行阅读文章()
-        elseif(score[2] < score_max_limit[2])  //观看视频
-            mod_执行观看视频()
-        elseif(score[3] < score_max_limit[3])  //文章学习时长
-            mod_执行阅读文章()
+        if(score[3] < score_max_limit[3])  //文章学习时长(优先时长)
+            mod_执行阅读文章("time")
         elseif(score[4] < score_max_limit[4])  //视频学习时长
-            mod_执行观看视频()
+            mod_执行观看视频("time")
+        elseif(score[1] < score_max_limit[1])  //阅读文章
+            mod_执行阅读文章("amount")
+        elseif(score[2] < score_max_limit[2])  //观看视频
+            mod_执行观看视频("amount")
         else
             break
         end
@@ -61,7 +61,7 @@ function mod_获取积分情况()
     sleep(1000)
 end
 
-function mod_执行阅读文章()
+function mod_执行阅读文章(mode)
     //加载主页页面
     logi("————执行阅读文章————")
     webgo("web", url_main)
@@ -110,15 +110,24 @@ function mod_执行阅读文章()
     logi("指定文章页面加载完毕,开始执行阅读.")
     logi("Banishment this world!")
     var read_time = 240000
-    var guichu_time = 500
+    if(mode == "time")  //挂时长模式
+        logi("模式:挂时长.")
+        read_time = 240000
+    elseif(mode == "amount")  //挂数量模式
+        logi("模式:挂数量.")
+        read_time = 60000
+    end
+    var guichu_time = 1000
     for(var i = 0; i < read_time/guichu_time; i++)
-        websetscollpos("web", 0, (rnd(0,1)*2-1)*50+1, 1)
+        websmoothscroll((rnd(0,1)*2-1)*50+5)
         sleep(guichu_time)
     end
+    
     logi("文章阅读完毕!")
     sleep(3000)
 end
-function mod_执行观看视频()
+
+function mod_执行观看视频(mode)
     //第一频道_重要活动视频专辑
     //第一频道_学习专题报道
     //第一频道_新闻联播
@@ -181,10 +190,31 @@ function mod_执行观看视频()
     js_clickrandomarticle = js_clickrandomarticle & "function getElementTitleEqualsTo(title){var elements = getElementsByClassName(document, \"word-item\");for(var i=0; i<elements.length;i++){if(elements[i].innerText == title){return elements[i];}}return null;}"
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
     webrunjs("web", js_clickrandomarticle)
-    for(var i = 5; i > 0; i--)
-        logi("观看剩余" & i & "分钟.")
-        sleep(60000)
+    while(!webloadcomplete("web"))
+        sleep(500)
     end
     
+    //执行鬼畜观看
+    logi("指定视频页面加载完毕,开始执行观看.")
+    logi("Banishment this world!")
+    var watch_minute = 5
+    if(mode == "time")  //挂时长模式
+        logi("模式:挂时长.")
+        watch_minute = 5
+    elseif(mode == "amount")  //挂数量模式
+        logi("模式:挂数量.")
+        watch_minute = 1
+    end
+    for(var i = watch_minute; i > 0; i--)
+        logi("观看剩余" & i & "分钟.")
+        var read_time = 60000
+		var guichu_time = 1000
+		for(var j = 0; j < read_time/guichu_time; j++)
+			websmoothscroll((rnd(0,1)*2-1)*50+5)
+			sleep(guichu_time)
+		end
+    end
+
+    logi("视频观看完毕!")
     sleep(3000)
 end

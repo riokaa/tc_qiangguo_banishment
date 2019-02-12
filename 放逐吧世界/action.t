@@ -8,7 +8,7 @@ function websmoothscroll(yPos)  //相对圆滑滚动
     end
     yPos = mabs(yPos)
     for(var i = 0; i < cint(yPos/3); i++)
-		websetscollpos("web", 0, unit, 1)
+        websetscollpos("web", 0, unit, 1)
         sleep(3)
     end
 end

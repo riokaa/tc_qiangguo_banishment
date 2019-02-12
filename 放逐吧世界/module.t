@@ -17,6 +17,14 @@
     logi("恭喜你!今日网页端任务已全部完成.")
 end
 
+function mod_开始时滚动网页到二维码()   
+    while(!webloadcomplete("web"))
+        sleep(500)
+    end
+    sleep(500)
+    websetscollpos("web",300, 950)
+end
+
 function mod_表格写(result)
     gridsetcontent("excel", 1, 0, "每日签到")
     gridsetcontent("excel", 2, 0, "文章阅读数")
@@ -208,13 +216,13 @@ function mod_执行观看视频(mode)
     for(var i = watch_minute; i > 0; i--)
         logi("观看剩余" & i & "分钟.")
         var read_time = 60000
-		var guichu_time = 1000
-		for(var j = 0; j < read_time/guichu_time; j++)
-			websmoothscroll((rnd(0,1)*2-1)*50+5)
-			sleep(guichu_time)
-		end
+        var guichu_time = 1000
+        for(var j = 0; j < read_time/guichu_time; j++)
+            websmoothscroll((rnd(0,1)*2-1)*50+5)
+            sleep(guichu_time)
+        end
     end
-
+    
     logi("视频观看完毕!")
     sleep(3000)
 end

@@ -4,10 +4,10 @@
 <EnterFile>放逐吧世界.t</EnterFile>
 <Language>0</Language>
 <Version>7.0</Version>
-<ExeIco/>
+<ExeIco>D:\Coding Projects\TC\放逐吧世界\放逐吧世界\资源\Rikka3.ico</ExeIco>
 <Platform>pc</Platform>
 </ProjInfo>
 <DesignInfo>
-<LockedCtrl>窗口: 放逐吧世界 bar|excel|控制台|startBtn|web|分组框0| 窗口结束</LockedCtrl>
+<LockedCtrl>窗口: 放逐吧世界 bar|excel|控制台|startBtn|web|分组框0|rikka_img| 窗口结束</LockedCtrl>
 </DesignInfo>
 </Project>

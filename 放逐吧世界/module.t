@@ -98,7 +98,7 @@ function mod_执行阅读文章(mode)
     sleep(500)
     
     //随机选择文章并通过js点击的方法进入
-    var randomNum = rnd(0, arraysize(result))
+    var randomNum = rnd(0, arraysize(result)-1)
     var randomArticleId = result_id[randomNum][0]
     var randomArticleTitle = result_title[randomNum][0]
     logi("阅读随机文章\"" & randomArticleTitle & "\"中……")

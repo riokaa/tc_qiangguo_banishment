@@ -17,17 +17,19 @@ function startBtn_点击()
 end
 
 function 放逐吧世界_初始化()
-    windowsetcaption(windowfind("放逐吧世界"), "放逐吧世界 " & version)
+    windowsetcaption(windowfind("Banishment"), "Banishment 放逐这个世界  " & version)
     gridfill("excel")
-    editadd("————————————————————————")
-    editadd("软件版本: " & version)
-    editadd("使用方式: 扫码登陆 → 开始执行(可后台运行)")
-    editadd("网页缩放: 网页框 Ctrl+滚轮 = 放大/缩小")
-    editadd("")
-    editadd("本软件完全免费.")
-    editadd("————————————————————————")
+    editadd("┌───────────────────────────────┐")
+    editadd("│***  软件版本：" & version & "  ***		  │")
+    editadd("│					  │")
+    editadd("│使用方式：扫码登陆后执行。		  │")
+    editadd("│网页缩放：Ctrl键 + 滚轮（非必要）。	  │")
+    editadd("│					  │")
+    editadd("│本软件完全免费。			  │")
+    editadd("└───────────────────────────────┘")
     
     threadbegin("mod_开始时滚动网页到二维码","")
+    threadbegin("mod_检查更新","")
 end
 
 function rikka_img_左键单击()

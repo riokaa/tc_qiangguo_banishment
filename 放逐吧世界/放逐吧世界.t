@@ -22,11 +22,12 @@ function 放逐吧世界_初始化()
     editadd("————————————————————————")
     editadd("软件版本: " & version)
     editadd("使用方式: 扫码登陆 → 开始执行(可后台运行)")
-    editadd("")
     editadd("网页缩放: 网页框 Ctrl+滚轮 = 放大/缩小")
+    editadd("")
+    editadd("本软件完全免费.")
     editadd("————————————————————————")
     
-	threadbegin("mod_开始时滚动网页到二维码","")
+    threadbegin("mod_开始时滚动网页到二维码","")
 end
 
 function rikka_img_左键单击()

@@ -120,7 +120,7 @@ function mod_执行阅读文章(mode)
     var read_time = 240000
     if(mode == "time")  //挂时长模式
         logi("模式:挂时长.")
-        read_time = 240000
+        read_time = 248000
     elseif(mode == "amount")  //挂数量模式
         logi("模式:挂数量.")
         read_time = 60000
@@ -215,7 +215,7 @@ function mod_执行观看视频(mode)
     end
     for(var i = watch_minute; i > 0; i--)
         logi("观看剩余" & i & "分钟.")
-        var read_time = 60000
+        var read_time = 62000
         var guichu_time = 1000
         for(var j = 0; j < read_time/guichu_time; j++)
             websmoothscroll((rnd(0,1)*2-1)*50+5)

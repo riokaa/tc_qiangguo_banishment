@@ -19,7 +19,7 @@ function mod_执行阅读文章(mode)
     var regBehindTitle = "</div>"
     result = regexmatchtext(result, regInFrontOfTitle & regTitle & regBehindTitle, false, true, true, true)  //获取所有文章标题
     logi("当前页面共获取到" & arraysize(result) & "条文章.")
-    if(arraysize((result) == 0)
+    if(arraysize(result) == 0)
         logf("请将本机IE浏览器升级到最新版本!")
     end
     for(var i = 0; i < arraysize(result); i++)
@@ -41,25 +41,25 @@ function mod_执行阅读文章(mode)
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
     webrunjs("web", js_clickrandomarticle)
     //webrunjs("web", "document.getElementById(\"" & randomArticleId & "\").click();")
-    logi("加载指定文章页面中....")
+    logd("加载指定文章页面中....")
     while(!webloadcomplete("web"))
         sleep(500)
     end
     sleep(1000)
     
     //执行鬼畜阅读
-    logi("指定文章页面加载完毕,开始执行阅读.")
-    logi("Banishment this world!")
     var read_time = 240000
     if(mode == "time")  //挂时长模式
-        logi("模式:挂时长.")
+        logd("模式:挂时长.")
         read_time = 248000
     elseif(mode == "amount")  //挂数量模式
-        logi("模式:挂数量.")
+        logd("模式:挂数量.")
         read_time = 60000
     else
         loge("mod_执行阅读文章:错误的mode格式")
     end
+    logi("指定文章页面加载完毕,开始执行阅读" & int(read_time/60000) & "分钟.")
+    logi("Banishment this world!")
     var guichu_time = 1000
     for(var i = 0; i < read_time/guichu_time; i++)
         websmoothscroll((rnd(0,1)*2-1)*50+5)

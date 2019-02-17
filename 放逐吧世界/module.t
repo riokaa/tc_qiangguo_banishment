@@ -1,4 +1,6 @@
 ﻿function mod_控制逻辑()
+    logi("如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
+    threadbegin("mod_获取视频列表分发", "")
     while(true)
         mod_获取积分情况()
         if(score[3] < score_max_limit[3])  //文章学习时长(优先时长)
@@ -48,7 +50,7 @@ end
 function mod_获取积分情况()
     logi("*** 获取积分情况 ***")
     webgo("web", url_mypoints)
-    logi("加载\"我的积分\"页面中……")
+    logi("加载\"我的积分\"页面中....")
     while(!webloadcomplete("web"))
         sleep(500)
     end
@@ -71,23 +73,43 @@ end
 
 function mod_检查更新()
     var requestMode = "get"
-    var requestUrl = "http://api.rayiooo.top/banishment/version.php"
+    var requestUrl = "http://api.rayiooo.top/banishment/version.php?version=" & version
     var response = httpsubmit(requestMode, requestUrl, "", "utf-8")
     logd("检查更新response: " & response)
     if(response == null || !isjson(response))
         return false
     end
     response = jsontoarray(response)
-    if(response["status"] != 1)
+    if(response["message"] != "ok")
         return false
     end
-    if(response["info"]["version"] == version)
+    if(response["data"]["version"] == version)
         logd("没有新版本发布.")
     else
-        logi("*** 发现软件新版本 " & response["info"]["version"] & " ***")
+        logi("*** 发现软件新版本 " & response["data"]["version"] & " ***")
         logi("")
-        logi("更新内容：" & response["info"]["update_content"])
-        logi("下载地址：" & response["info"]["download"])
+        logi("更新内容：" & response["data"]["update_content"])
+        logi("下载地址：" & response["data"]["download"])
     end
+    return true
+end
+
+function mod_获取视频列表分发()
+    logd("获取视频列表分发中....")
+    var requestMode = "get"
+    var requestUrl = "http://api.rayiooo.top/banishment/getVideoList.php"
+    var response = httpsubmit(requestMode, requestUrl, "", "utf-8")
+    logd("获取分发视频列表response: " & response)
+    if(response == null || !isjson(response))
+        logi("Remote: 无法获取视频列表分发.")
+        return false
+    end
+    response = jsontoarray(response)
+    if(response["message"] != "ok")
+        logi("Remote: 视频列表分发获取失败.")
+        return false
+    end
+    logi("Remote: 视频列表分发获取成功.")
+    vdo_list = response["data"]
     return true
 end

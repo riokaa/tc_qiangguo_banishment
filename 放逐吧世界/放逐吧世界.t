@@ -17,7 +17,6 @@ function startBtn_点击()
 end
 
 function 放逐吧世界_初始化()
-    const_init()
     windowsetcaption(windowfind("Banishment"), "Banishment 放逐这个世界  " & version)
     gridfill("excel")
     editadd("┌───────────────────────────────┐")

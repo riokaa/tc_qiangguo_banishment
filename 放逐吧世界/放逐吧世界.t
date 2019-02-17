@@ -18,7 +18,6 @@ end
 
 function 放逐吧世界_初始化()
     const_init()
-    webgo("web", "https://zj.xuexi.cn/local/detail.html?ae5e411fe91d6d3c1ac4def110933f4f=79bf89c8acbc3cd2ce3dd2d5179bc702&6e9d852f0075def5a5b44097c3ebecda=0fde12478eeb5d99c393fc38d46379a422b4c830142d782d79304660c5d02f96")  //debug
     windowsetcaption(windowfind("Banishment"), "Banishment 放逐这个世界  " & version)
     gridfill("excel")
     editadd("┌───────────────────────────────┐")

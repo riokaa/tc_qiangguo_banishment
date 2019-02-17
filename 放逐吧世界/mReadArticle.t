@@ -19,6 +19,9 @@ function mod_执行阅读文章(mode)
     var regBehindTitle = "</div>"
     result = regexmatchtext(result, regInFrontOfTitle & regTitle & regBehindTitle, false, true, true, true)  //获取所有文章标题
     logi("当前页面共获取到" & arraysize(result) & "条文章.")
+    if(arraysize((result) == 0)
+        logf("请将本机IE浏览器升级到最新版本!")
+    end
     for(var i = 0; i < arraysize(result); i++)
         result_title[i] = regexmatchtext(result[i], regTitle, false, true, true, true)  //提取标题
         result_id[i] = regexmatchtext(result[i], "id=\"[0-9a-zA-Z]+\"", false, true, true, true)

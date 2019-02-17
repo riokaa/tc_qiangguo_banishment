@@ -10,4 +10,13 @@
 <DesignInfo>
 <LockedCtrl>窗口: 放逐吧世界 bar|excel|控制台|startBtn|web|分组框0|rikka_img| 窗口结束</LockedCtrl>
 </DesignInfo>
+<VersionInfo>
+<ProductName>Banishment</ProductName>
+<FileDescription>放逐这个世界！</FileDescription>
+<FileVersion>1.1.0.0</FileVersion>
+<ProductVersion>1.1.0.0</ProductVersion>
+<CompanyName>板san</CompanyName>
+<LegalCopyright>&lt;板san&gt;保留所有版权</LegalCopyright>
+<InternalName>TC</InternalName>
+</VersionInfo>
 </Project>

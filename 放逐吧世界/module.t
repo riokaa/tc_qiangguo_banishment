@@ -2,7 +2,6 @@
     while(true)
         mod_获取积分情况()
         if(score[3] < score_max_limit[3])  //文章学习时长(优先时长)
-            mod_执行观看视频("time")  //debug
             mod_执行阅读文章("time")
         elseif(score[4] < score_max_limit[4])  //视频学习时长
             mod_执行观看视频("time")

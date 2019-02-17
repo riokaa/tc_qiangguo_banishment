@@ -36,7 +36,6 @@ end
 function goVdoWeb()
     //进入视频网页
     var random_channel = rnd(-1, arraysize(url_local_vdo) - 1)  //-1中央,other地方
-    random_channel = 0  //debug
     if(random_channel == -1)  //中央视频
         
         //第一频道_重要活动视频专辑
@@ -114,7 +113,7 @@ function goVdoWeb()
         sleep(1000)
         logi(url_local_vdo[random_channel]["name"] & "视频站加载完毕.")
         
-		//读取当前页面视频列表
+        //读取当前页面视频列表
         var result = webhtmlget("web", "innerHtml", "class:content")
         var regTitleBefore = "<span\\sclass=\"_3NwIqm\">"
         var regTitle = ".*?"

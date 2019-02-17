@@ -20,4 +20,5 @@ end
 function logf(content)
     traceprint(timenow() & "[FATAL]:" & content)
     editadd(timenow() & "[FATAL]:" & content)
+    messagebox("[FATAL]:" & content)
 end

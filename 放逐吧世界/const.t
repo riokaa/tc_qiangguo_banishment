@@ -1,6 +1,7 @@
 ﻿//常量表
 var author = "板san."
 var DEBUG = false
+var auto_shutdown = false
 var score = array()
 var score_max_limit = array(1, 6, 6, 8, 10)
 var url_main = "https://www.xuexi.cn/"

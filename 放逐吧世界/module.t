@@ -1,5 +1,5 @@
 ﻿function mod_控制逻辑()
-    logi("如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
+    logi("提示: 如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
     threadbegin("mod_获取视频列表分发", "")
     while(true)
         mod_获取积分情况()
@@ -17,6 +17,11 @@
         sleep(1000)
     end
     logi("恭喜你!今日网页端任务已全部完成.")
+    if(auto_shutdown)
+        logi("10秒后将执行自动关机操作.")
+        sleep(10000)
+        sysshutdown(0)
+    end
 end
 
 function mod_开始时滚动网页到二维码()   

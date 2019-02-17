@@ -23,7 +23,7 @@ function mod_执行观看视频(mode)
     else
         loge("mod_执行观看视频:错误的mode格式")
     end
-    logi("指定视频页面加载完毕,开始执行观看" & watch_minute & "分钟.")
+    logi("开始执行观看 - " & watch_minute & " - 分钟（即使不播放视频也可以积分）.")
     logi("Banishment this world!")
     for(var i = watch_minute; i > 0; i--)
         logi("观看剩余" & i & "分钟.")

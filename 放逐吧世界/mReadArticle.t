@@ -41,7 +41,7 @@ function mod_执行阅读文章(mode)
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
     webrunjs("web", js_clickrandomarticle)
     //webrunjs("web", "document.getElementById(\"" & randomArticleId & "\").click();")
-    logd("加载指定文章页面中....")
+    logd("加载指定文章中....")
     while(!webloadcomplete("web"))
         sleep(500)
     end
@@ -58,7 +58,7 @@ function mod_执行阅读文章(mode)
     else
         loge("mod_执行阅读文章:错误的mode格式")
     end
-    logi("指定文章页面加载完毕,开始执行阅读" & int(read_time/60000) & "分钟.")
+    logi("开始执行阅读 - " & int(read_time/60000) & " - 分钟.")
     logi("Banishment this world!")
     var guichu_time = 1000
     for(var i = 0; i < read_time/guichu_time; i++)

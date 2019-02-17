@@ -1,5 +1,6 @@
-﻿var mainThread
-var testarray = array(array(1,2), array(3,4))
+﻿var mainHwnd
+var mainThread
+var settingsHwnd
 
 function 执行()
     mod_控制逻辑()
@@ -17,7 +18,9 @@ function startBtn_点击()
 end
 
 function 放逐吧世界_初始化()
-    windowsetcaption(windowfind("Banishment"), "Banishment 放逐这个世界  " & version)
+    mainHwnd = windowfind("Banishment")
+    windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
+	//windowsendmessage(mainHwnd, 793, 2100912, 524288)  //静音
     gridfill("excel")
     editadd("┌───────────────────────────────┐")
     editadd("│***  软件版本：" & version & "  ***		  │")
@@ -25,13 +28,16 @@ function 放逐吧世界_初始化()
     editadd("│使用方式：扫码登陆后执行。		  │")
     editadd("│网页缩放：Ctrl键 + 滚轮（非必要）。	  │")
     editadd("│					  │")
-    editadd("│本软件完全免费。			  │")
+    editadd("│本软件『完全免费』。			  │")
     editadd("└───────────────────────────────┘")
     
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
 end
 
-function rikka_img_左键单击()
-    
+
+function setting_btn_左键单击()
+    mouselock()
+    settingsHwnd = controlopenwindow("settings")
+    mouseunlock()
 end

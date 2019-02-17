@@ -92,7 +92,6 @@ function mod_检查更新()
         logd("没有新版本发布.")
     else
         logi("*** 发现软件新版本 " & response["data"]["version"] & " ***")
-        logi("")
         logi("更新内容：" & response["data"]["update_content"])
         logi("下载地址：" & response["data"]["download"])
     end

@@ -4,7 +4,7 @@
 <EnterFile>放逐吧世界.t</EnterFile>
 <Language>0</Language>
 <Version>7.0</Version>
-<ExeIco>D:\Coding Projects\TC\1901_Banishment\放逐吧世界\资源\Rikka3.ico</ExeIco>
+<ExeIco>D:\Coding Projects\TC\1901_Banishment\放逐吧世界\资源\Rikka.ico</ExeIco>
 <Platform>pc</Platform>
 </ProjInfo>
 <DesignInfo>
@@ -13,10 +13,10 @@
 <VersionInfo>
 <ProductName>Banishment</ProductName>
 <FileDescription>放逐这个世界！</FileDescription>
-<FileVersion>1.1.0.0</FileVersion>
-<ProductVersion>1.1.0.0</ProductVersion>
+<FileVersion>1.2.0.0</FileVersion>
+<ProductVersion>1.2.0.0</ProductVersion>
 <CompanyName>板san</CompanyName>
 <LegalCopyright>&lt;板san&gt;保留所有版权</LegalCopyright>
-<InternalName>TC</InternalName>
+<InternalName>放逐吧世界</InternalName>
 </VersionInfo>
 </Project>

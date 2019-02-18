@@ -17,6 +17,7 @@
         sleep(1000)
     end
     logi("恭喜你!今日网页端任务已全部完成.")
+    buttonsettext("startBtn", "开始执行")
     if(auto_shutdown)
         logi("10秒后将执行自动关机操作.")
         sleep(10000)

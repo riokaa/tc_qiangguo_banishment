@@ -20,7 +20,7 @@ end
 function 放逐吧世界_初始化()
     mainHwnd = windowfind("Banishment")
     windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
-	//windowsendmessage(mainHwnd, 793, 2100912, 524288)  //静音
+    //windowsendmessage(mainHwnd, 793, 2100912, 524288)  //静音
     gridfill("excel")
     editadd("┌───────────────────────────────┐")
     editadd("│***  软件版本：" & version & "  ***		  │")

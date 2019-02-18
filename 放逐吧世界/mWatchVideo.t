@@ -5,7 +5,7 @@ function mod_执行观看视频(mode)
     
     //随机进入视频网页
     if(arraysize(vdo_list) > 0)
-        logi("有分发视频!可以尽情观看了.")
+        logd("有分发视频!可以尽情观看了.")
         goLocalVdoPage()
     else
         logi("没有分发视频,进入离线选择视频模式.")
@@ -36,22 +36,28 @@ function mod_执行观看视频(mode)
     end
     
     logi("视频观看完毕!")
-    sleep(3000)
+    sleep(1000)
 end
 
 function goLocalVdoPage()
     //根据分发的地方视频数据,进入地方视频网页
-    if(arraysize(vdo_list) == 0)
+    logd("vdo_list.length : " & arraysize(vdo_list))
+    
+    if(arrayfindkey(vdo_list, vdo_list_num) == -1|| vdo_list_num < 0)
         return false
     end
-    var random = rnd(0, arraysize(vdo_list) - 1)
-    webgo("web", vdo_list[random]["url"])
-    logi("加载视频\"" & vdo_list[random]["title"] & "\".")
+    
+    logd("random : " & vdo_list)
+    logd("vdo_list_num : " & vdo_list_num)
+    webgo("web", vdo_list[vdo_list_num]["url"])
+    logi("加载视频\"" & vdo_list[vdo_list_num]["title"] & "\".")
     while(!webloadcomplete("web"))
         sleep(500)
     end
     logd("视频页加载完毕.")
-    arraydeletepos(vdo_list, random)
+    
+    arraydeletekey(vdo_list, vdo_list_num)
+    vdo_list_num = vdo_list_num + 1
     sleep(1000)
     return true
 end

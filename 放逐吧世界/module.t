@@ -1,4 +1,8 @@
 ﻿function mod_控制逻辑()
+    //变量初始化
+	var vdo_list = array()  //json格式视频分发数据
+	var vdo_list_num = 0
+    
     logi("提示: 如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
     threadbegin("mod_获取视频列表分发", "")
     while(true)

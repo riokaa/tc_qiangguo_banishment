@@ -51,6 +51,7 @@ function goLocalVdoPage()
     logd("vdo_list_num : " & vdo_list_num)
     webgo("web", vdo_list[vdo_list_num]["url"])
     logi("加载视频\"" & vdo_list[vdo_list_num]["title"] & "\".")
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
@@ -58,7 +59,7 @@ function goLocalVdoPage()
     
     arraydeletekey(vdo_list, vdo_list_num)
     vdo_list_num = vdo_list_num + 1
-    sleep(1000)
+    sleep(800)
     return true
 end
 
@@ -71,10 +72,11 @@ function goCenterVdoPage()
     
     webgo("web", url_learntv)
     logi("加载中央频道\"学习电视台\"....")
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
     logi("\"学习电视台\"加载完毕.")
     
     //随机选择视频
@@ -92,6 +94,7 @@ function goCenterVdoPage()
         logi("随机选择专题:新闻联播")
         webhtmlclick("web", "value:新闻联播")
     end
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
@@ -128,8 +131,9 @@ function goCenterVdoPage()
     webrunjs("web", js_clickrandomarticle)
     
     //等待网页加载
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
 end

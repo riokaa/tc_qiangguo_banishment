@@ -4,10 +4,11 @@ function mod_执行阅读文章(mode)
     logi("*** 执行阅读文章 ***")
     webgo("web", url_main)
     logi("加载\"主页\"页面中(需要较长时间)....")
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
     logi("\"主页\"页面加载完毕.")
     
     //读取页面新闻标题们
@@ -41,11 +42,12 @@ function mod_执行阅读文章(mode)
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
     webrunjs("web", js_clickrandomarticle)
     //webrunjs("web", "document.getElementById(\"" & randomArticleId & "\").click();")
+    sleep(800)
     logd("加载指定文章中....")
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
     
     //执行鬼畜阅读
     var read_time = 240000
@@ -67,5 +69,5 @@ function mod_执行阅读文章(mode)
     end
     
     logi("文章阅读完毕!")
-    sleep(3000)
+    sleep(2000)
 end

@@ -1,7 +1,7 @@
 ﻿function mod_控制逻辑()
     //变量初始化
-	var vdo_list = array()  //json格式视频分发数据
-	var vdo_list_num = 0
+    var vdo_list = array()  //json格式视频分发数据
+    var vdo_list_num = 0
     
     logi("提示: 如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
     threadbegin("mod_获取视频列表分发", "")
@@ -61,10 +61,11 @@ function mod_获取积分情况()
     logi("*** 获取积分情况 ***")
     webgo("web", url_mypoints)
     logi("加载\"我的积分\"页面中....")
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
     logi("我的积分页面加载完毕.")
     var result = webhtmlget("web", "innerHtml", "class:my-points-content")
     result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)

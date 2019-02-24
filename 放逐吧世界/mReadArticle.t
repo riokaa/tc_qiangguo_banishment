@@ -2,6 +2,7 @@
 function mod_执行阅读文章(mode)
     //加载主页页面
     logi("*** 执行阅读文章 ***")
+    webmovemouse()  //动动鼠标
     webgo("web", url_main)
     logi("加载\"主页\"页面中(需要较长时间)....")
     sleep(800)
@@ -21,7 +22,7 @@ function mod_执行阅读文章(mode)
     result = regexmatchtext(result, regInFrontOfTitle & regTitle & regBehindTitle, false, true, true, true)  //获取所有文章标题
     logi("当前页面共获取到" & arraysize(result) & "条文章.")
     if(arraysize(result) == 0)
-        logf("请将本机IE浏览器升级到最新版本!")
+        logf("如果每次都弹出此提示，请将本机IE浏览器升级到最新版本！")
     end
     for(var i = 0; i < arraysize(result); i++)
         result_title[i] = regexmatchtext(result[i], regTitle, false, true, true, true)  //提取标题
@@ -40,6 +41,7 @@ function mod_执行阅读文章(mode)
     var js_clickrandomarticle = "function getElementsByClassName(node,classname) {if (node.getElementsByClassName) {return node.getElementsByClassName(classname);} else {return (function getElementsByClass(searchClass,node) {if ( node == null )node=document;var classElements=[],els = node.getElementsByTagName(\"*\"),elsLen=els.length,pattern=new RegExp(\"(^|\\s)\"+searchClass+\"(\\s|$)\"), i, j;for (i = 0, j = 0; i < elsLen; i++) {if ( pattern.test(els[i].className) ) {classElements[j] = els[i]; j++;}}return classElements;})(classname, node);}}"
     js_clickrandomarticle = js_clickrandomarticle & "function getElementTitleEqualsTo(title){var elements = getElementsByClassName(document, \"word-item\");for(var i=0; i<elements.length;i++){if(elements[i].innerText == title){return elements[i];}}return null;}"
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
+    webmovemouse()  //动动鼠标
     webrunjs("web", js_clickrandomarticle)
     //webrunjs("web", "document.getElementById(\"" & randomArticleId & "\").click();")
     sleep(800)
@@ -53,10 +55,10 @@ function mod_执行阅读文章(mode)
     var read_time = 240000
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
-        read_time = 248000
+        read_time = 60000 * rnd(3, 5)
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")
-        read_time = 60000
+        read_time = 60000 + rnd(-15, 15) * 1000
     else
         loge("mod_执行阅读文章:错误的mode格式")
     end
@@ -65,6 +67,9 @@ function mod_执行阅读文章(mode)
     var guichu_time = 1000
     for(var i = 0; i < read_time/guichu_time; i++)
         websmoothscroll((rnd(0,1)*2-1)*50+5)
+        if(i % 30 == 0)
+            webmovemouse()  //动动鼠标
+        end
         sleep(guichu_time)
     end
     

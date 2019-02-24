@@ -1,7 +1,7 @@
 ﻿function mod_控制逻辑()
     //变量初始化
-    var vdo_list = array()  //json格式视频分发数据
-    var vdo_list_num = 0
+    vdo_list = array()  //json格式视频分发数据
+    vdo_list_num = 0
     
     logi("提示: 如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
     threadbegin("mod_获取视频列表分发", "")
@@ -29,10 +29,13 @@
     end
 end
 
-function mod_开始时滚动网页到二维码()   
+function mod_开始时滚动网页到二维码()   //并静音洗脑曲
+    var js = "document.getElementsByTagName(\'audio\')[0].volume = 0;"
     while(!webloadcomplete("web"))
+        webrunjs("web", js)  //静音
         sleep(500)
     end
+    webrunjs("web", js)  //静音
     sleep(500)
     websetscollpos("web",300, 950)
 end
@@ -57,8 +60,10 @@ function mod_表格写(result)
     progresssetprogress("bar", percent)
     logd(fenzi & "/" & fenmu & "=" & percent & "%")
 end
+
 function mod_获取积分情况()
     logi("*** 获取积分情况 ***")
+    webmovemouse()  //动动鼠标
     webgo("web", url_mypoints)
     logi("加载\"我的积分\"页面中....")
     sleep(800)
@@ -97,29 +102,34 @@ function mod_检查更新()
     if(response["data"]["version"] == version)
         logd("没有新版本发布.")
     else
-        logi("*** 发现软件新版本 " & response["data"]["version"] & " ***")
+        logi(" (╯#-_-)╯~~~~~~~~~~~~~~~~~~~~~~~~~~~╧═╧ ")
+        logi("")
+        logi("下载地址（复制到浏览器打开）：" & response["data"]["download"])
         logi("更新内容：" & response["data"]["update_content"])
-        logi("下载地址：" & response["data"]["download"])
+        logi("发现软件新版本 " & response["data"]["version"] & "")
+        logi("")
+        logi(" (╯#-_-)╯~~~~~~~~~~~~~~~~~~~~~~~~~~~╧═╧ ")
+        messagebox("发现新版本啦！请到控制台中查看。")
     end
     return true
 end
 
 function mod_获取视频列表分发()
-    logd("获取视频列表分发中....")
+    logd("获取视频列表中....")
     var requestMode = "get"
     var requestUrl = "http://api.rayiooo.top/banishment/getVideoList.php"
     var response = httpsubmit(requestMode, requestUrl, "", "utf-8")
-    logd("获取分发视频列表response: " & response)
+    logd("获取视频列表response: " & response)
     if(response == null || !isjson(response))
-        logi("Remote: 无法获取视频列表分发.")
+        logi("Remote: 无法获取视频列表.")
         return false
     end
     response = jsontoarray(response)
     if(response["message"] != "ok")
-        logi("Remote: 视频列表分发获取失败.")
+        logi("Remote: 视频列表获取失败.")
         return false
     end
-    logi("Remote: 视频列表分发获取成功.")
+    logi("Remote: 视频列表获取成功.")
     vdo_list = response["data"]
     return true
 end

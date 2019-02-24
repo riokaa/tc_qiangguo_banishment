@@ -126,10 +126,10 @@ function mod_获取视频列表分发()
     end
     response = jsontoarray(response)
     if(response["message"] != "ok")
-        logi("Remote: 视频列表获取失败.")
+        logi("视频列表获取失败.")
         return false
     end
-    logi("Remote: 视频列表获取成功.")
+    logi("视频列表获取成功.")
     vdo_list = response["data"]
     return true
 end

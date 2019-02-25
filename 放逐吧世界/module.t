@@ -70,7 +70,7 @@ function mod_获取积分情况()
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(800)
+    sleep(2000)
     logi("我的积分页面加载完毕.")
     var result = webhtmlget("web", "innerHtml", "class:my-points-content")
     result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)

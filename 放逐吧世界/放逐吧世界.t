@@ -18,18 +18,21 @@ function startBtn_点击()
 end
 
 function 放逐吧世界_初始化()
-    mainHwnd = windowfind("Banishment")
+    mainHwnd = windowfind("Banishment")  //获取窗口句柄
     windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
     //windowsendmessage(mainHwnd, 793, 2100912, 524288)  //静音
-    gridfill("excel")
-    editadd("┌───────────────────────────────┐")
-    editadd("│***  软件版本：" & version & "  ***		  │")
-    editadd("│					  │")
-    editadd("│使用方式：扫码登陆后执行。		  │")
-    editadd("│网页缩放：Ctrl键 + 滚轮（非必要）。	  │")
-    editadd("│					  │")
-    editadd("│本软件『完全免费』。			  │")
-    editadd("└───────────────────────────────┘")
+    settray("Banishment", false)  //托盘设置
+    gridfill("excel")  //表格填满初始化
+    editadd("本软件『完全可以免费使用』。")
+    editadd("")
+    editadd("如无法正常使用，请更新IE浏览器至最新版本。")
+    editadd("")
+    editadd("多开方式：使用Sandbox（沙盘）软件进行多开。")
+    editadd("网页缩放：Ctrl键 + 滚轮（非必要）。")
+    editadd("使用方式：扫码登陆后执行。")
+    editadd("")
+    editadd("***  软件版本：" & version & "  ***")
+    editadd("")
     
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")

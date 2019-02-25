@@ -9,5 +9,5 @@ var url_main = "https://www.xuexi.cn/"
 var url_mypoints = "https://pc.xuexi.cn/points/my-points.html"
 var vdo_list = array()  //json格式视频分发数据
 var vdo_list_num = 0
-var version = "v1.2.1"
-var version_date = "2019.2.18"
+var version = "v1.2.2"
+var version_date = "2019.2.24"

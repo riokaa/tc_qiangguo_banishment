@@ -16,7 +16,7 @@ function mod_执行观看视频(mode)
     var watch_minute = 5
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
-        watch_minute = 5
+        watch_minute = rnd(4, 6)
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")
         watch_minute = 1
@@ -26,8 +26,9 @@ function mod_执行观看视频(mode)
     logi("开始执行观看 - " & watch_minute & " - 分钟（即使不播放视频也可以积分）.")
     logi("Banishment this world!")
     for(var i = watch_minute; i > 0; i--)
+        webmovemouse()  //动动鼠标
         logi("观看剩余" & i & "分钟.")
-        var read_time = 62000
+        var read_time = 60000
         var guichu_time = 1000
         for(var j = 0; j < read_time/guichu_time; j++)
             websmoothscroll((rnd(0,1)*2-1)*50+5)
@@ -49,8 +50,10 @@ function goLocalVdoPage()
     
     logd("random : " & vdo_list)
     logd("vdo_list_num : " & vdo_list_num)
+    webmovemouse()  //动动鼠标
     webgo("web", vdo_list[vdo_list_num]["url"])
     logi("加载视频\"" & vdo_list[vdo_list_num]["title"] & "\".")
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
@@ -58,7 +61,7 @@ function goLocalVdoPage()
     
     arraydeletekey(vdo_list, vdo_list_num)
     vdo_list_num = vdo_list_num + 1
-    sleep(1000)
+    sleep(800)
     return true
 end
 
@@ -69,18 +72,22 @@ function goCenterVdoPage()
     //第一频道_新闻联播
     //以上频道三选一
     
+    webmovemouse()  //动动鼠标
     webgo("web", url_learntv)
     logi("加载中央频道\"学习电视台\"....")
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
     logi("\"学习电视台\"加载完毕.")
     
     //随机选择视频
+    webmovemouse()  //动动鼠标
     webhtmlclick("web", "value:第一频道")
     sleep(500)
     var random_num = rnd(1,3)
+    webmovemouse()  //动动鼠标
     select(random_num)
         case 1
         logi("随机选择专题:强国活动视频集")
@@ -92,6 +99,7 @@ function goCenterVdoPage()
         logi("随机选择专题:新闻联播")
         webhtmlclick("web", "value:新闻联播")
     end
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
@@ -125,11 +133,13 @@ function goCenterVdoPage()
     var js_clickrandomarticle = "function getElementsByClassName(node,classname) {if (node.getElementsByClassName) {return node.getElementsByClassName(classname);} else {return (function getElementsByClass(searchClass,node) {if ( node == null )node=document;var classElements=[],els = node.getElementsByTagName(\"*\"),elsLen=els.length,pattern=new RegExp(\"(^|\\s)\"+searchClass+\"(\\s|$)\"), i, j;for (i = 0, j = 0; i < elsLen; i++) {if ( pattern.test(els[i].className) ) {classElements[j] = els[i]; j++;}}return classElements;})(classname, node);}}"
     js_clickrandomarticle = js_clickrandomarticle & "function getElementTitleEqualsTo(title){var elements = getElementsByClassName(document, \"word-item\");for(var i=0; i<elements.length;i++){if(elements[i].innerText == title){return elements[i];}}return null;}"
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
+    webmovemouse()  //动动鼠标
     webrunjs("web", js_clickrandomarticle)
     
     //等待网页加载
+    sleep(800)
     while(!webloadcomplete("web"))
         sleep(500)
     end
-    sleep(1000)
+    sleep(800)
 end

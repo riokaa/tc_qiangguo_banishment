@@ -9,5 +9,5 @@ var bs_loginStatus = 0  //登录状态,1011登陆成功
 
 function bs_constInit()
     bs_machineCode = md5(getmac())
-    bs_SeSSL = "ssl-" + bs_machineCode
+    bs_SeSSL = "ssl-" & bs_machineCode
 end

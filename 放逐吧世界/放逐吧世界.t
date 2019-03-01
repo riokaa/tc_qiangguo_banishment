@@ -34,8 +34,10 @@ function 放逐吧世界_初始化()
     editadd("***  软件版本：" & version & "  ***")
     editadd("")
     
+    threadbegin("bs_constInit", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
+    test()
 end
 
 
@@ -43,4 +45,8 @@ function setting_btn_左键单击()
     mouselock()
     settingsHwnd = controlopenwindow("settings")
     mouseunlock()
+end
+
+function test()
+    bs_发送api请求("BSphpSeSsL.in", array())
 end

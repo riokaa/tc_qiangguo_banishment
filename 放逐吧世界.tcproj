@@ -8,7 +8,7 @@
 <Platform>pc</Platform>
 </ProjInfo>
 <DesignInfo>
-<LockedCtrl>窗口: 放逐吧世界 setting_btn|bar|excel|控制台|startBtn|web|分组框0|rikka_img| 窗口结束窗口: settings 选项卡0|设置_silence|设置_退出|设置_确定|标签0|设置_autoshutdown|标签1|图片框0| 窗口结束</LockedCtrl>
+<LockedCtrl>窗口: 放逐吧世界 bar|控制台|startBtn|excel|web|setting_btn|rikka_img|分组框0| 窗口结束窗口: settings 选项卡0|设置_silence|设置_退出|设置_确定|标签0|设置_autoshutdown|标签1|图片框0| 窗口结束</LockedCtrl>
 </DesignInfo>
 <VersionInfo>
 <ProductName>Banishment</ProductName>

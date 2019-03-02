@@ -1,5 +1,7 @@
 ﻿
 function bs_发送api请求(apiname, param)
+    logd("执行api请求<" & apiname & ">")
+    var _safecode = md5(getTimeStampMillis())
     //build post body
     var _parameter = array()
     var _api = "api=" & apiname
@@ -7,7 +9,7 @@ function bs_发送api请求(apiname, param)
     var _date = "date=" & getnettime()
     var _md5 = "md5="
     var _mutualkey = "mutualkey=" & bs_mutualKey
-    var _appsafecode = "appsafecode=" & md5(getTimeStampMillis())
+    var _appsafecode = "appsafecode=" & _safecode
     arraypush(_parameter, _api)
     arraypush(_parameter, _BSphpSeSsL)
     arraypush(_parameter, _date)
@@ -18,11 +20,11 @@ function bs_发送api请求(apiname, param)
         arraypush(_parameter, param[i])
     end
     _parameter = httpBodyLinkParam(_parameter)
-    logd("Api请求param明文:" & _parameter)
+    //logd("Api请求param明文:" & _parameter)
     _parameter = base64encode(_parameter)
     var _sgin = md5(strreplace(bs_inSgin, "[KEY]", _parameter))
     _parameter = "parameter=" & _parameter & "&sgin=" & _sgin  //base64编码,后台需选择base64接收加密
-    logd("Api请求param密文:" & _parameter)
+    //logd("Api请求param密文:" & _parameter)
     
     //send post request
     var _response = httpsubmit("post", bs_reqUrl, _parameter, "utf-8")
@@ -47,11 +49,17 @@ function bs_发送api请求(apiname, param)
 		loge("Api请求数据包错误:no appsafecode/sgin item.")
     end
     
-    arraydeletekey(_parameter["response"], "sgin")
-    _sgin = md5(_parameter)
-    if(_response["appsafecode"] != _appsafecode || _response["sgin"] != _sgin)
-        loge("Api请求数据包异常:verify error! sgin=" & _sgin)
+    _sgin = _response["data"] & _response["date"] & _response["unix"] & _response["microtime"] & _response["appsafecode"]
+    _sgin = md5(strreplace(bs_outSgin, "[KEY]", _sgin))
+    if(_response["sgin"] != _sgin)
+        loge("Api请求数据包验证失败:wrong sign! (" & _sgin & ")")
+        return null
     end
-    logd("Api请求成功response:" & _response)
+    if(_response["appsafecode"] != _safecode)
+        loge("Api请求数据包异常:wrong appsafecode!")
+        return null
+    end
     
+    logd("Api请求成功!")
+    return _response["data"]
 end

@@ -1,9 +1,4 @@
-﻿//开始按钮_点击操作
-功能 register_开始_点击()
-返回 真
-结束
-
-//退出按钮_点击操作
-功能 register_退出_点击()
-返回 真
-结束
+﻿function register_初始化()
+    httpdownload(bs_reqUrl_coode & bs_SeSSL, "rc:coode.jpeg")
+    picturesetpicture("reg_coode_pic", "rc:coode.jpeg", "register")
+end

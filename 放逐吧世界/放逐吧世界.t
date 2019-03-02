@@ -48,5 +48,6 @@ function setting_btn_左键单击()
 end
 
 function test()
-    bs_发送api请求("BSphpSeSsL.in", array())
+    //bs_发送api请求("BSphpSeSsL.in", array())
+    controlopenwindow("register")
 end

@@ -1,7 +1,7 @@
 ﻿
 function bs_发送api请求(apiname, param)
     logd("执行api请求<" & apiname & ">")
-    var _safecode = md5(getTimeStampMillis())
+    var _safecode = strlowercase(bbymd5(getTimeStampMillis()))
     //build post body
     var _parameter = array()
     var _api = "api=" & apiname
@@ -22,7 +22,8 @@ function bs_发送api请求(apiname, param)
     _parameter = httpBodyLinkParam(_parameter)
     //logd("Api请求param明文:" & _parameter)
     _parameter = base64encode(_parameter)
-    var _sgin = md5(strreplace(bs_inSgin, "[KEY]", _parameter))
+    var _sgin = bbymd5(strreplace(bs_inSgin, "[KEY]", _parameter))
+    _sgin = strlowercase(_sgin)
     _parameter = "parameter=" & _parameter & "&sgin=" & _sgin  //base64编码,后台需选择base64接收加密
     //logd("Api请求param密文:" & _parameter)
     
@@ -34,32 +35,46 @@ function bs_发送api请求(apiname, param)
     //verify data safe
     if(_response == null || !isjson(_response))
         loge("Api请求失败:" & getlasterror())
-        return null
+        return ""
     end
     
     _response = jsontoarray(_response)
     if(arrayfindkey(_response, "response") == -1)
         loge("Api请求数据包错误:no response item.")
+        return ""
     end
     
     _parameter = _response
     var temp = _response["response"]
     _response = temp
-	if(arrayfindkey(_response, "appsafecode") == -1 || arrayfindkey(_response, "sgin") == -1)
-		loge("Api请求数据包错误:no appsafecode/sgin item.")
+    if(arrayfindkey(_response, "appsafecode") == -1 || arrayfindkey(_response, "sgin") == -1)
+        loge("Api请求数据包错误:no appsafecode/sgin item.")
+        return ""
     end
     
     _sgin = _response["data"] & _response["date"] & _response["unix"] & _response["microtime"] & _response["appsafecode"]
-    _sgin = md5(strreplace(bs_outSgin, "[KEY]", _sgin))
+    _sgin = bbymd5(urldecode(strreplace(bs_outSgin, "[KEY]", _sgin)))
+    _sgin = strlowercase(_sgin)
     if(_response["sgin"] != _sgin)
+        logd(_sgin)
         loge("Api请求数据包验证失败:wrong sign! (" & _sgin & ")")
-        return null
+        return ""
     end
     if(_response["appsafecode"] != _safecode)
-        loge("Api请求数据包异常:wrong appsafecode!")
-        return null
+        loge("Api请求数据包被劫持! ")
+        return ""
     end
     
     logd("Api请求成功!")
     return _response["data"]
+end
+
+function bs_注册(user, pwd, pwdb, email, coode)
+    var _req = array()
+    _req[0] = "user=" & user
+    _req[1] = "pwd=" & pwd
+    _req[2] = "pwdb=" & pwdb
+    _req[3] = "mail=" & email
+    _req[4] = "coode=" & coode
+    return bs_发送api请求("registration.lg", _req)
 end

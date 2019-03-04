@@ -78,3 +78,11 @@ function bs_注册(user, pwd, pwdb, email, coode)
     _req[4] = "coode=" & coode
     return bs_发送api请求("registration.lg", _req)
 end
+
+function bs_登陆(user, pwd)
+    var _req = array()
+    _req[0] = "user=" & user
+    _req[1] = "pwd=" & pwd
+    _req[2] = "maxoror=" & bs_SeSSL
+    return bs_发送api请求("login.lg", _req)
+end

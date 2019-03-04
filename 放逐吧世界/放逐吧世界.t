@@ -49,5 +49,6 @@ end
 
 function test()
     //bs_发送api请求("BSphpSeSsL.in", array())
-    controlopenwindow("register")
+    //controlopenwindow("register")
+    controlopenwindow("login")
 end

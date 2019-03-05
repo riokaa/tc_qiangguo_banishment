@@ -35,8 +35,10 @@ function 放逐吧世界_初始化()
     editadd("")
     
     threadbegin("bs_constInit", "")
+    threadbegin("bsmod_init", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
+    threadbegin("bsmod_心跳包控制", "")
     test()
 end
 

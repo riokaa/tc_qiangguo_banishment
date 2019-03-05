@@ -65,7 +65,7 @@ function bs_发送api请求(apiname, param)
         return ""
     end
     
-    logd("Api请求成功!")
+    //logd("Api请求成功!")
     return _response["data"]
 end
 
@@ -85,4 +85,28 @@ function bs_登陆(user, pwd)
     _req[1] = "pwd=" & pwd
     _req[2] = "maxoror=" & bs_SeSSL
     return bs_发送api请求("login.lg", _req)
+end
+
+function bs_心跳包()
+    var _req = array()
+    return bs_发送api请求("timeout.lg", _req)
+end
+
+function bs_取登陆状态信息()
+    var _req = array()
+    return bs_发送api请求("lginfo.lg", _req)
+end
+
+function bs_取用户信息(info)
+    var _req = array()
+    _req[0] = "info="
+    if(info == "用户名称")
+		_req[0] = "info=UserName"
+    elseif(info == "到期时间")
+		_req[0] = "info=UserVipDate"
+    elseif(info == "是否到期")
+		_req[0] = "info=UserVipWhether"
+    end
+    bs_发送api请求("getuserinfo.lg", _req)
+    
 end

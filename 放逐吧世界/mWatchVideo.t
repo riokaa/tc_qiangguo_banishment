@@ -3,13 +3,17 @@ function mod_执行观看视频(mode)
     
     logi("*** 执行观看视频 ***")
     
+    var success = false
     //随机进入视频网页
     if(arraysize(vdo_list) > 0)
         logd("有分发视频!可以尽情观看了.")
-        goLocalVdoPage()
+        success = goLocalVdoPage()
     else
         logi("没有分发视频,进入离线选择视频模式.")
-        goCenterVdoPage()
+        success = goCenterVdoPage()
+    end
+    if(!success)
+        return false
     end
     
     //执行鬼畜观看
@@ -38,6 +42,7 @@ function mod_执行观看视频(mode)
     
     logi("视频观看完毕!")
     sleep(1000)
+    return true
 end
 
 function goLocalVdoPage()
@@ -45,6 +50,7 @@ function goLocalVdoPage()
     logd("vdo_list.length : " & arraysize(vdo_list))
     
     if(arrayfindkey(vdo_list, vdo_list_num) == -1|| vdo_list_num < 0)
+        loge("进入地方视频页失败!")
         return false
     end
     
@@ -113,20 +119,20 @@ function goCenterVdoPage()
     var regTitleEnd = "</div>"
     result = regexmatchtext(result, regTitleBefore & regTitle & regTitleEnd, false, true, true, true)  //获取所有视频标题
     logi("此页面共获取到" & arraysize(result) & "条视频.")
+    if(arraysize(result) == 0)
+        loge("视频列表获取失败!")
+        return false
+    end
     
-    //var result_id = array()
     var result_title = array()
     for(var i = 0; i < arraysize(result); i++)
         result_title[i] = regexmatchtext(result[i], regTitle, false, true, true, true)  //提取标题
-        //result_id[i] = regexmatchtext(result[i], "id=\"[0-9a-zA-Z]+\"", false, true, true, true)
-        //result_id[i] = regexmatchtext(result_id[i], "[0-9a-zA-Z]{10,}", false, true, true, true)  //提取标题id
     end
     logd("result_title: " & result_title)
     sleep(500)
     
     //随机选择视频并通过js点击的方法进入
     var randomNum = rnd(0, arraysize(result) - 1)
-    //var randomArticleId = result_id[randomNum][0]
     var randomArticleTitle = result_title[randomNum][0]
     logi("观看随机视频\"" & randomArticleTitle & "\"中....")
     //js代码点击相应标题的视频
@@ -142,4 +148,6 @@ function goCenterVdoPage()
         sleep(500)
     end
     sleep(800)
+    
+    return true
 end

@@ -8,6 +8,7 @@ var bs_outSgin = "[KEY].*?大喵[KEY]ment!"
 var bs_machineCode  //机器码
 var bs_SeSSL
 var bs_status = -1  //登录状态,1011登陆成功
+var bs_user = ""
 
 function bs_constInit()
     bs_machineCode = md5(getmac())

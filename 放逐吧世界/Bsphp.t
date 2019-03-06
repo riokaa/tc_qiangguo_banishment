@@ -107,6 +107,12 @@ function bs_取用户信息(info)
     elseif(info == "是否到期")
 		_req[0] = "info=UserVipWhether"
     end
-    bs_发送api请求("getuserinfo.lg", _req)
-    
+    return bs_发送api请求("getuserinfo.lg", _req)
+end
+
+function bs_远程注销登录状态(user, pwd)
+    var _req = array()
+    _req[0] = "user=" & user
+    _req[1] ="pwd="& pwd
+    return bs_发送api请求("remotecancellation.lg", _req)
 end

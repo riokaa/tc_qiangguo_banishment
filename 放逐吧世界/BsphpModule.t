@@ -1,9 +1,27 @@
 ﻿
 function bsmod_init()
     if(bs_取登陆状态信息() == 1)
-        bs_取用户信息("用户名称")
+        bsmod_刷新用户信息()
+        controlshow("user_login", false)
+        controlshow("user_reg", false)
+        controlshow("user_exit", true)
     else
-        
+        controlshow("user_login", true)
+        controlshow("user_reg", true)
+        controlshow("user_exit", false)
+    end
+end
+
+function bsmod_刷新用户信息()
+    bs_user = bs_取用户信息("用户名称")
+    staticsettext("label_user", bs_user)
+    staticsettext("label_vipDate", bs_取用户信息("到期时间"))
+    if(bs_取用户信息("是否到期") ==1)
+        staticsetcolor("label_vipStatus", "#00ff00")
+        staticsettext("label_vipStatus", "√")
+    else
+        staticsetcolor("label_vipStatus", "#ff0000")
+        staticsettext("label_vipStatus", "已到期")
     end
 end
 

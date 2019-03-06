@@ -1,27 +1,25 @@
 ﻿
-function bsmod_init()
-    if(bs_取登陆状态信息() == 1)
-        bsmod_刷新用户信息()
-        controlshow("user_login", false)
-        controlshow("user_reg", false)
-        controlshow("user_exit", true)
-    else
-        controlshow("user_login", true)
-        controlshow("user_reg", true)
-        controlshow("user_exit", false)
-    end
-end
-
 function bsmod_刷新用户信息()
-    bs_user = bs_取用户信息("用户名称")
-    staticsettext("label_user", bs_user)
-    staticsettext("label_vipDate", bs_取用户信息("到期时间"))
-    if(bs_取用户信息("是否到期") ==1)
-        staticsetcolor("label_vipStatus", "#00ff00")
-        staticsettext("label_vipStatus", "√")
+    if(bs_取登陆状态信息() == 1)
+        controlshow("user_login", false, "放逐吧世界")
+        controlshow("user_reg", false, "放逐吧世界")
+        controlshow("user_exit", true, "放逐吧世界")
+		bs_user = bs_取用户信息("用户名称")
+		staticsettext("label_user", bs_user)
+		staticsettext("label_vipDate", bs_取用户信息("到期时间"))
+		if(bs_取用户信息("是否到期") ==1)
+            bs_vip = true
+			staticsetcolor("label_vipStatus", "#00ff00")
+			staticsettext("label_vipStatus", "√")
+		else
+            bs_vip = false
+			staticsetcolor("label_vipStatus", "#ff0000")
+			staticsettext("label_vipStatus", "已到期")
+		end
     else
-        staticsetcolor("label_vipStatus", "#ff0000")
-        staticsettext("label_vipStatus", "已到期")
+        controlshow("user_login", true, "放逐吧世界")
+        controlshow("user_reg", true, "放逐吧世界")
+        controlshow("user_exit", false, "放逐吧世界")
     end
 end
 
@@ -37,6 +35,7 @@ function bsmod_心跳包控制()
         elseif(bs_status == 5026 || bs_status == 1049)
             logw("登陆超时.")
         end
+        bsmod_刷新用户信息()
         sleep(15 * 60 * 1000)
     end
 end

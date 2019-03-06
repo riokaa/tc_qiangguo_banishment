@@ -51,13 +51,14 @@ function mod_表格写(result)
     gridsetcontent("excel", 3, 1, result[2])
     gridsetcontent("excel", 4, 1, result[3])
     gridsetcontent("excel", 5, 1, result[4])
-    var fenmu = 1, fenzi = 0
+    var fenmu = 0, fenzi = 0
     for(var i = 0; i < arraysize(score_max_limit); i++)
         fenmu = fenmu + score_max_limit[i]
         fenzi = fenzi + score[i]
     end
     var percent = int(fenzi*100/fenmu)
     progresssetprogress("bar", percent)
+    //settraytip("进度：" & fenzi & "/" & fenmu)
     logd(fenzi & "/" & fenmu & "=" & percent & "%")
 end
 

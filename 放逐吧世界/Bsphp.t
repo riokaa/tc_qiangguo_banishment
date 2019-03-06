@@ -83,7 +83,7 @@ function bs_登陆(user, pwd)
     var _req = array()
     _req[0] = "user=" & user
     _req[1] = "pwd=" & pwd
-    _req[2] = "maxoror=" & bs_SeSSL
+    _req[2] = "maxoror=" & bs_machineCode
     return bs_发送api请求("login.lg", _req)
 end
 
@@ -101,11 +101,11 @@ function bs_取用户信息(info)
     var _req = array()
     _req[0] = "info="
     if(info == "用户名称")
-		_req[0] = "info=UserName"
+        _req[0] = "info=UserName"
     elseif(info == "到期时间")
-		_req[0] = "info=UserVipDate"
+        _req[0] = "info=UserVipDate"
     elseif(info == "是否到期")
-		_req[0] = "info=UserVipWhether"
+        _req[0] = "info=UserVipWhether"
     end
     return bs_发送api请求("getuserinfo.lg", _req)
 end
@@ -115,4 +115,9 @@ function bs_远程注销登录状态(user, pwd)
     _req[0] = "user=" & user
     _req[1] ="pwd="& pwd
     return bs_发送api请求("remotecancellation.lg", _req)
+end
+
+function bs_注销登陆()
+    var _req = array()
+    return bs_发送api请求("cancellation.lg", _req)
 end

@@ -9,9 +9,10 @@ var bs_machineCode  //机器码
 var bs_SeSSL
 var bs_status = -1  //登录状态,1011登陆成功
 var bs_user = ""
+var bs_vip = false  //是否是vip
 
 function bs_constInit()
     bs_machineCode = md5(getmac())
-    bs_SeSSL = "ssl-" & bs_machineCode
+    bs_SeSSL = "ssl-" & md5(getmac() & getTimeStampMillis())
     bs_reqUrl_coode = bs_reqUrl_coode & bs_SeSSL
 end

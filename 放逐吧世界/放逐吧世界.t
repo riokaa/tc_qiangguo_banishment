@@ -28,7 +28,6 @@ function 放逐吧世界_初始化()
     threadbegin("cleanTrash", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
-    threadbegin("bsmod_心跳包控制", "")
     //test()
 end
 
@@ -42,6 +41,15 @@ function setting_btn_左键单击()
     mouselock()
     settingsHwnd = controlopenwindow("settings")
     mouseunlock()
+end
+
+function tab_选择改变()
+    var _tab = tabgetcursel("tab")
+    if(_tab == 2)
+        if(webgeturl("web_公告") == "")
+			webgo("web_公告", "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_list&open_new=")
+        end
+    end
 end
 
 function user_login_点击()

@@ -3,9 +3,10 @@
 end
 
 function reg_coode_pic_左键单击()
-    httpdownload(bs_reqUrl_coode, "rc:coode.jpeg")
+    foldercreate(path_cur & "temp")
+    httpdownload(bs_reqUrl_coode, path_cur & "temp\\coode.jpeg")
     logd("验证码请求:" & bs_reqUrl_coode)
-    picturesetpicture("reg_coode_pic", "rc:coode.jpeg", "user_register")
+    picturesetpicture("reg_coode_pic", path_cur & "temp\\coode.jpeg", "user_register")
 end
 
 function reg_reg_点击()

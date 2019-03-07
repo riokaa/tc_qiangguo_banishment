@@ -31,22 +31,22 @@ function 设置_深入支持Btn_点击()
     var response = httpsubmit(requestMode, requestUrl, "", "utf-8")
     logd("续命地址response: " & response)
     if(response == null || !isjson(response))
-		buttonsettext("设置_深入支持Btn", "获取失败", "settings")
+        buttonsettext("设置_深入支持Btn", "获取失败", "settings")
         logw("Remote: 无法获取服务器续命地址.")
-		messagebox("很感谢！不过暂时没有深入支持功能。")
+        messagebox("很感谢！不过暂时没有深入支持功能。")
         return false
     end
     response = jsontoarray(response)
     if(response["message"] != "ok")
-		buttonsettext("设置_深入支持Btn", "暂不支持深入", "settings")
+        buttonsettext("设置_深入支持Btn", "暂不支持深入", "settings")
         logw("Remote: 服务器当前不可续命.")
-		messagebox("很感谢！不过暂时没有深入支持功能。")
+        messagebox("很感谢！不过暂时没有深入支持功能。")
         return false
     end
     logi("Remote: 服务器续命地址获取成功.")
     var continue_url = response["data"]["value"]
     logi("深入支持链接: " & continue_url)
-	buttonsettext("设置_深入支持Btn", "深入支持", "settings")
-	messagebox("感谢支持！请到控制台复制打开支持链接。")
+    buttonsettext("设置_深入支持Btn", "深入支持", "settings")
+    messagebox("感谢支持！请到控制台复制打开支持链接。")
     return true
 end

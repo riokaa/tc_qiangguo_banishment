@@ -10,12 +10,13 @@ function bsmod_刷新用户信息()
         if(bs_取用户信息("是否到期") ==1)
             bs_vip = true
             staticsetcolor("label_vipStatus", "#00ff00")
-            staticsettext("label_vipStatus", "√")
+            staticsettext("label_vipStatus", "邪王真眼健在√")
         else
             bs_vip = false
             staticsetcolor("label_vipStatus", "#ff0000")
             staticsettext("label_vipStatus", "已到期")
         end
+        return true
     else
         staticsettext("label_user", "未登录")
         staticsettext("label_vipStatus", "")
@@ -23,6 +24,7 @@ function bsmod_刷新用户信息()
         controlshow("user_login", true, "放逐吧世界")
         controlshow("user_reg", true, "放逐吧世界")
         controlshow("user_exit", false, "放逐吧世界")
+		return false
     end
 end
 

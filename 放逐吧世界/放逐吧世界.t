@@ -19,12 +19,10 @@ end
 
 function 放逐吧世界_初始化()
     mainHwnd = windowfind("Banishment")  //获取窗口句柄
-    windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
-    settray("Banishment", false)  //托盘设置
-    editInit()
     constInit()
     bs_constInit()
-    main_UIInit()
+    threadbegin("main_UIInit", "")
+    threadbegin("editInit", "")
     threadbegin("cleanTrash", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
@@ -32,6 +30,8 @@ function 放逐吧世界_初始化()
 end
 
 function main_UIInit()
+    windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
+    settray("Banishment", false)  //托盘设置
     gridfill("excel")  //表格填满初始化
     controlshow("user_exit", false)
     picturesetpicture("rikka_img", path_cur & "\\img\\Rikka.png")
@@ -47,7 +47,7 @@ function tab_选择改变()
     var _tab = tabgetcursel("tab")
     if(_tab == 2)
         if(webgeturl("web_公告") == "")
-			webgo("web_公告", "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_list&open_new=")
+            webgo("web_公告", "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_list&open_new=")
         end
     end
 end

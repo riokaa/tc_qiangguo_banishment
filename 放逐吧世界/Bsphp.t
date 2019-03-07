@@ -69,16 +69,6 @@ function bs_发送api请求(apiname, param)
     return _response["data"]
 end
 
-function bs_注册(user, pwd, pwdb, email, coode)
-    var _req = array()
-    _req[0] = "user=" & user
-    _req[1] = "pwd=" & pwd
-    _req[2] = "pwdb=" & pwdb
-    _req[3] = "mail=" & email
-    _req[4] = "coode=" & coode
-    return bs_发送api请求("registration.lg", _req)
-end
-
 function bs_登陆(user, pwd)
     var _req = array()
     _req[0] = "user=" & user
@@ -87,9 +77,8 @@ function bs_登陆(user, pwd)
     return bs_发送api请求("login.lg", _req)
 end
 
-function bs_心跳包()
-    var _req = array()
-    return bs_发送api请求("timeout.lg", _req)
+function bs_获取SeSSL()
+    bs_SeSSL = "ssl-" & md5(getmac() & getTimeStampMillis())
 end
 
 function bs_取登陆状态信息()
@@ -110,11 +99,19 @@ function bs_取用户信息(info)
     return bs_发送api请求("getuserinfo.lg", _req)
 end
 
-function bs_远程注销登录状态(user, pwd)
+function bs_心跳包()
+    var _req = array()
+    return bs_发送api请求("timeout.lg", _req)
+end
+
+function bs_注册(user, pwd, pwdb, email, coode)
     var _req = array()
     _req[0] = "user=" & user
-    _req[1] ="pwd="& pwd
-    return bs_发送api请求("remotecancellation.lg", _req)
+    _req[1] = "pwd=" & pwd
+    _req[2] = "pwdb=" & pwdb
+    _req[3] = "mail=" & email
+    _req[4] = "coode=" & coode
+    return bs_发送api请求("registration.lg", _req)
 end
 
 function bs_注销登陆()

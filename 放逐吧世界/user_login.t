@@ -8,14 +8,31 @@ function lg_login_点击()
         //登陆成功
         if(_array[0] == "01")
             bs_status = cint(_array[1])
-			controlclosewindow("user_login", 0)
-			bsmod_刷新用户信息()
-		else
-			staticsettext("lg_warn", "登陆失败！错误码：" & _array[1], "user_login")
+            //另写请求减少请求次数
+			controlshow("user_login", false, "放逐吧世界")
+			controlshow("user_reg", false, "放逐吧世界")
+			controlshow("user_exit", true, "放逐吧世界")
+			bs_user = editgettext("lg_user", "user_login")
+            controlclosewindow("user_login", 0)
+			staticsettext("label_user", bs_user)
+			staticsettext("label_vipDate", _array[4])
+			if(bs_取用户信息("是否到期") ==1)
+				bs_vip = true
+				staticsetcolor("label_vipStatus", "#00ff00")
+				staticsettext("label_vipStatus", "√")
+			else
+				bs_vip = false
+				staticsetcolor("label_vipStatus", "#ff0000")
+				staticsettext("label_vipStatus", "已到期")
+			end
+        else
+            staticsettext("lg_warn", "登陆失败！错误码：" & _array[1], "user_login")
         end
     elseif(_response == "9908")
         //已到期
-        staticsettext("lg_warn", "邪王真眼Pro过期！续期即可登陆。", "user_login")
+        //staticsettext("lg_warn", "邪王真眼Pro过期！续期即可登陆。", "user_login")
+        bs_status = cint(_array[1])
+        controlclosewindow("user_login", 0)
         bsmod_刷新用户信息()
     else
         //登陆失败

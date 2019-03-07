@@ -21,12 +21,11 @@ function 放逐吧世界_初始化()
     mainHwnd = windowfind("Banishment")  //获取窗口句柄
     windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
     settray("Banishment", false)  //托盘设置
-	editInit()
+    editInit()
     constInit()
     bs_constInit()
     main_UIInit()
     threadbegin("cleanTrash", "")
-    //threadbegin("bsmod_刷新用户信息", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
     threadbegin("bsmod_心跳包控制", "")
@@ -55,9 +54,9 @@ end
 
 function user_exit_点击()
     if(bs_注销登陆() == 1)
+        bs_获取SeSSL()
         bsmod_刷新用户信息()
     end
-    //controlopenwindow("user_exit")
 end
 
 function test()

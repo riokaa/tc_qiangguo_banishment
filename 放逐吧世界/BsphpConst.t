@@ -13,6 +13,6 @@ var bs_vip = false  //是否是vip
 
 function bs_constInit()
     bs_machineCode = md5(getmac())
-    bs_SeSSL = "ssl-" & md5(getmac() & getTimeStampMillis())
+    bs_获取SeSSL()
     bs_reqUrl_coode = bs_reqUrl_coode & bs_SeSSL
 end

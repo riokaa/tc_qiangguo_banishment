@@ -1,7 +1,5 @@
 ﻿function cleanTrash()
     //清理垃圾文件
-    foldercreate(path_cur & "config")
-    var path_config = path_cur & "config\\Config.ini"
     var path_temp = filereadini("EXE", "TempPath", path_config)
     if(path_temp != "")
         var _res = folderdelete(path_temp)
@@ -10,8 +8,7 @@
             logi("残留的临时文件已清理.")
         end
     end
-    var _res = filewriteini("EXE", "TempPath", path_rc, path_config)
-    logd("写配置结果:" & _res)
+    filewriteini("EXE", "TempPath", path_rc, path_config)
 end
 
 function destroyMyself()

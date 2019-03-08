@@ -19,13 +19,16 @@ end
 
 function 放逐吧世界_初始化()
     mainHwnd = windowfind("Banishment")  //获取窗口句柄
+    //init options
     constInit()
     bs_constInit()
     threadbegin("main_UIInit", "")
     threadbegin("editInit", "")
+    //module options
     threadbegin("cleanTrash", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
+    threadbegin("lg_auto_login", "")
     //test()
 end
 
@@ -62,6 +65,8 @@ end
 
 function user_exit_点击()
     if(bs_注销登陆() == 1)
+		filewriteini("USER", "User", "", path_config)
+		filewriteini("USER", "Pwd", "", path_config)
         bs_获取SeSSL()
         bsmod_刷新用户信息()
     end
@@ -72,8 +77,5 @@ function btn_getPro_点击()
 end
 
 function test()
-    //bs_发送api请求("BSphpSeSsL.in", array())
-    //controlopenwindow("register")
-    //controlopenwindow("login")
     
 end

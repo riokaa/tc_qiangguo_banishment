@@ -1,4 +1,9 @@
 ﻿
+function user_login_初始化()
+    hotkeyregister("lg_hottab", "user_login")
+    windowsetfocus(controlgethandle("lg_user", "user_login"))
+end
+
 function lg_login_点击()
     var _user = editgettext("lg_user", "user_login")
     var _pwd = editgettext("lg_pwd", "user_login")
@@ -17,9 +22,9 @@ function lg_login_点击()
             staticsettext("label_user", bs_user)
             staticsettext("label_vipDate", _array[4])
             if(_array[1] == "1011")
-				bs_vip = true
-				staticsetcolor("label_vipStatus", "#00ff00")
-				staticsettext("label_vipStatus", "邪王真眼健在√")
+                bs_vip = true
+                staticsetcolor("label_vipStatus", "#00ff00")
+                staticsettext("label_vipStatus", "邪王真眼健在√")
             end
         else
             staticsettext("lg_warn", "登陆失败！错误码：" & _array[1], "user_login")
@@ -46,5 +51,12 @@ end
 
 
 function lg_forget_点击()
-    
+    //TODO
+end
+
+
+function lg_tab_热键()
+    if(windowgetfocushwnd() == controlgethandle("lg_user", "user_login"))
+        windowsetfocus(controlgethandle("lg_pwd", "user_login"))
+    end
 end

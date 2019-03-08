@@ -67,6 +67,10 @@ function user_exit_点击()
     end
 end
 
+function btn_getPro_点击()
+    
+end
+
 function test()
     //bs_发送api请求("BSphpSeSsL.in", array())
     //controlopenwindow("register")

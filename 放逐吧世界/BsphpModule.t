@@ -18,13 +18,15 @@ function bsmod_刷新用户信息()
         end
         return true
     else
+        bs_status = -1
+        bs_vip = false
         staticsettext("label_user", "未登录")
         staticsettext("label_vipStatus", "")
         staticsettext("label_vipDate", "")
         controlshow("user_login", true, "放逐吧世界")
         controlshow("user_reg", true, "放逐吧世界")
         controlshow("user_exit", false, "放逐吧世界")
-		return false
+        return false
     end
 end
 

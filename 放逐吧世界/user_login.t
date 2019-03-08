@@ -1,9 +1,4 @@
 ﻿
-function user_login_初始化()
-    hotkeyregister("lg_hottab", "user_login")
-    windowsetfocus(controlgethandle("lg_user", "user_login"))
-end
-
 function lg_login_点击()
     var _user = editgettext("lg_user", "user_login")
     var _pwd = editgettext("lg_pwd", "user_login")
@@ -49,14 +44,10 @@ function lg_login_点击()
     end
 end
 
-
 function lg_forget_点击()
-    //TODO
+    messagebox("联系相关邮箱~", "忘记密码")
 end
 
-
-function lg_tab_热键()
-    if(windowgetfocushwnd() == controlgethandle("lg_user", "user_login"))
-        windowsetfocus(controlgethandle("lg_pwd", "user_login"))
-    end
+function lg_hot_enter_热键()
+    lg_login_点击()
 end

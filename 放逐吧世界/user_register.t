@@ -18,4 +18,11 @@ function reg_reg_点击()
     var _coode = editgettext("reg_coode", "user_register")
     var _response = bs_注册(_user, _pwd, _pwdb, _email, _coode)
     staticsettext("reg_warn", _response, "user_register")
+    if(_response != "注册成功")
+        reg_coode_pic_左键单击()
+    end
+end
+
+function reg_hot_enter_热键()
+    reg_reg_点击()
 end

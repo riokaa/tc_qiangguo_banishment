@@ -47,7 +47,7 @@ function tab_选择改变()
     var _tab = tabgetcursel("tab")
     if(_tab == 2)
         if(webgeturl("web_公告") == "")
-            webgo("web_公告", "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_list&open_new=")
+            webgo("web_公告", "http://verify.rayiooo.top/index.php?m=applib&c=appweb&open_new=&a=new_list&list=10001")
         end
     end
 end

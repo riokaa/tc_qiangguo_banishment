@@ -16,8 +16,7 @@ function lg_auto_login()
             controlshow("user_login", false, "放逐吧世界")
             controlshow("user_reg", false, "放逐吧世界")
             controlshow("user_exit", true, "放逐吧世界")
-            bs_user = _user
-            staticsettext("label_user", bs_user)
+            staticsettext("label_user", _user)
             staticsettext("label_vipDate", _array[4])
             if(_array[1] == "1011")
                 bs_vip = true
@@ -45,7 +44,8 @@ function lg_auto_login()
         logw("个人中心登陆失败.")
         return false
     end
-    
+    bs_user = _user
+    bs_pwd = _pwd
     logi("你好," & _user & ".")
 end
 
@@ -63,6 +63,7 @@ function lg_login_点击()
             controlshow("user_reg", false, "放逐吧世界")
             controlshow("user_exit", true, "放逐吧世界")
             bs_user = _user
+            bs_pwd = _pwd
             controlclosewindow("user_login", 0)
             staticsettext("label_user", bs_user)
             staticsettext("label_vipDate", _array[4])
@@ -93,7 +94,8 @@ function lg_login_点击()
         staticsettext("lg_warn", _response, "user_login")
         return false
     end
-    
+    bs_user = _user
+    bs_pwd = _pwd
     logi("你好," & _user & ".")
     //自动登陆信息存储至ini
     filewriteini("USER", "User", _user, path_config)

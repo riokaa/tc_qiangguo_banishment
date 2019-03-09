@@ -65,17 +65,22 @@ end
 
 function user_exit_点击()
     if(bs_注销登陆() == 1)
-		filewriteini("USER", "User", "", path_config)
-		filewriteini("USER", "Pwd", "", path_config)
+        filewriteini("USER", "User", "", path_config)
+        filewriteini("USER", "Pwd", "", path_config)
         bs_获取SeSSL()
         bsmod_刷新用户信息()
     end
 end
 
-function btn_getPro_点击()
+function user_act_点击()
+    controlopenwindow("user_activate")
+end
+
+function user_getPro_点击()
     
 end
 
 function test()
     
 end
+

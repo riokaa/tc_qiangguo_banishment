@@ -35,13 +35,13 @@ function bs_发送api请求(apiname, param)
     //verify data safe
     if(_response == null || !isjson(_response))
         loge("Api请求失败:" & getlasterror())
-        return ""
+        return "Api请求失败."
     end
     
     _response = jsontoarray(_response)
     if(arrayfindkey(_response, "response") == -1)
         loge("Api请求数据包错误:no response item.")
-        return ""
+        return "Api请求数据包错误:no response item."
     end
     
     _parameter = _response
@@ -49,7 +49,7 @@ function bs_发送api请求(apiname, param)
     _response = temp
     if(arrayfindkey(_response, "appsafecode") == -1 || arrayfindkey(_response, "sgin") == -1)
         loge("Api请求数据包错误:no appsafecode/sgin item.")
-        return ""
+        return "Api请求数据包错误:no appsafecode/sgin item."
     end
     
     _sgin = _response["data"] & _response["date"] & _response["unix"] & _response["microtime"] & _response["appsafecode"]
@@ -57,13 +57,13 @@ function bs_发送api请求(apiname, param)
     _sgin = strlowercase(_sgin)
     if(_response["sgin"] != _sgin)
         logd(_sgin)
-        loge("Api请求数据包验证失败:wrong sign! (" & _sgin & ")")
-        return ""
+        loge("Api请求数据包验证失败! (" & _sgin & ")")
+        return "Api请求数据包验证失败! "
     end
     if(_response["appsafecode"] != _safecode)
         loge("Api请求数据包被劫持! 即将自闭。")
         threadbegin("destroyMyself", "")
-        return ""
+        return "Api请求数据包被劫持! 即将自闭。"
     end
     
     //logd("Api请求成功!")
@@ -98,6 +98,16 @@ function bs_取用户信息(info)
         _req[0] = "info=UserVipWhether"
     end
     return bs_发送api请求("getuserinfo.lg", _req)
+end
+
+function bs_软件充值vip续期(user, userpwd, userset, ka, kapwd)
+    var _req = array()
+    _req[0] = "user=" & user
+    _req[1] = "userpwd=" & userpwd
+    _req[2] = "userset=" & userset
+    _req[3] = "ka=" & ka
+    _req[4] = "pwd=" & kapwd
+    return bs_发送api请求("chong.lg", _req)
 end
 
 function bs_心跳包()

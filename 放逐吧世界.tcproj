@@ -8,7 +8,7 @@
 <Platform>pc</Platform>
 </ProjInfo>
 <DesignInfo>
-<LockedCtrl>窗口: 放逐吧世界 tab|bar|控制台|startBtn|excel|web|setting_btn|rikka_img|分组框0|user_exit|user_reg|user_login|label_vipDate|标签9|label_vipStatus|label_user|标签8|标签7|图片框2|分组框1| 窗口结束窗口: settings 选项卡0|设置_silence|设置_退出|设置_确定|标签0|设置_autoshutdown|标签1| 窗口结束窗口: user_register 图片框1|reg_coode_pic|reg_warn|reg_coode|标签6|标签5|reg_pwd|reg_pwdb|标签4|reg_user|标签3|标签2|reg_email|reg_reg| 窗口结束窗口: user_login lg_forget|lg_warn|标签5|lg_pwd|lg_user|标签3|lg_login| 窗口结束</LockedCtrl>
+<LockedCtrl>窗口: 放逐吧世界 tab|bar|控制台|startBtn|excel|web|setting_btn|rikka_img|分组框0|user_exit|user_reg|user_login|label_vipDate|标签9|label_vipStatus|label_user|标签8|标签7|图片框2|分组框1| 窗口结束窗口: user_register 选项卡0|设置_silence|设置_退出|设置_确定|标签0|设置_autoshutdown|标签1| 窗口结束窗口: user_login 图片框1|reg_coode_pic|reg_warn|reg_coode|标签6|标签5|reg_pwd|reg_pwdb|标签4|reg_user|标签3|标签2|reg_email|reg_reg| 窗口结束窗口: user_activate lg_forget|lg_warn|标签5|lg_pwd|lg_user|标签3|lg_login| 窗口结束</LockedCtrl>
 </DesignInfo>
 <VersionInfo>
 <ProductName>Banishment</ProductName>

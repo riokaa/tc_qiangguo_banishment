@@ -80,7 +80,29 @@ function user_getPro_点击()
     controlopenwindow("user_pay")
 end
 
+function set_apply_点击()
+    //自动关机
+    if(checkgetstate("set_autoshutdown"))
+        if(!settings_auto_shutdown)
+            settings_auto_shutdown = true
+            logi("设置：自动关机功能开启。")
+        end
+    else
+        if(settings_auto_shutdown)
+            settings_auto_shutdown = false
+            logi("设置：自动关机功能关闭。")
+        end
+    end
+    
+    //反馈
+    threadbegin("set_apply_success_thread", "")
+end
+ function set_apply_success_thread()
+    buttonsettext("set_apply", "成功!")
+    sleep(1000)
+    buttonsettext("set_apply", "应用")
+ end
+
 function test()
     
 end
-

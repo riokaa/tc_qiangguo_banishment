@@ -17,30 +17,26 @@ function mod_执行观看视频(mode)
     end
     
     //执行鬼畜观看
-    var watch_minute = 5
+    var watch_time = 300000
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
-        watch_minute = rnd(4, 6)
+        if(bs_vip)
+            watch_time = watch_time * rnd(90, 125) / 100
+        end
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")
-        watch_minute = 1
+        watch_time = 60000
+        if(bs_vip)
+            watch_time = watch_time + rnd(-20, 0) * 1000
+        end
     else
         loge("mod_执行观看视频:错误的mode格式")
     end
-    logi("开始执行观看 - " & watch_minute & " - 分钟（即使不播放视频也可以积分）.")
+    logi("开始执行观看 - " & (watch_time/60000.0) & " - 分钟（即使不播放视频也可以积分）.")
     logi("Banishment this world!")
-    for(var i = watch_minute; i > 0; i--)
-        if(!bs_vip)
-			webmovemouse()  //动动鼠标
-        end
-        logi("观看剩余" & i & "分钟.")
-        var read_time = 60000
-        var guichu_time = 1000
-        for(var j = 0; j < read_time/guichu_time; j++)
-            websmoothscroll((rnd(0,1)*2-1)*50+5)
-            sleep(guichu_time)
-        end
-    end
+    threadresume(proThread_scroll)
+    sleep(watch_time)
+    threadsuspend(proThread_scroll)
     
     logi("视频观看完毕!")
     sleep(1000)

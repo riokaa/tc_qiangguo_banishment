@@ -1,6 +1,7 @@
 ﻿var mainHwnd
 var mainThread
 var proThread_mouseMove
+var proThread_scroll
 
 function 执行()
     mod_控制逻辑()
@@ -27,6 +28,7 @@ function 放逐吧世界_初始化()
     threadbegin("editInit", "")
     //thread options
     proThread_mouseMove = threadbegin("promod_鼠标光标人性化移动", "")
+    proThread_scroll = threadbegin("promod_滚轮人性化滚动", "")
     //module options
     threadbegin("cleanTrash", "")
     threadbegin("mod_开始时滚动网页到二维码","")
@@ -35,6 +37,7 @@ function 放逐吧世界_初始化()
     //后处理
     sleep(500)
     threadsuspend(proThread_mouseMove)
+    threadsuspend(proThread_scroll)
     //test()
 end
 

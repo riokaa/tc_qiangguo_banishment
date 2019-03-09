@@ -30,7 +30,9 @@ function mod_执行观看视频(mode)
     logi("开始执行观看 - " & watch_minute & " - 分钟（即使不播放视频也可以积分）.")
     logi("Banishment this world!")
     for(var i = watch_minute; i > 0; i--)
-        webmovemouse()  //动动鼠标
+        if(!bs_vip)
+			webmovemouse()  //动动鼠标
+        end
         logi("观看剩余" & i & "分钟.")
         var read_time = 60000
         var guichu_time = 1000
@@ -93,7 +95,7 @@ function goCenterVdoPage()
     webhtmlclick("web", "value:第一频道")
     sleep(500)
     var random_num = rnd(1,3)
-    webmovemouse()  //动动鼠标
+    //webmovemouse()  //动动鼠标
     select(random_num)
         case 1
         logi("随机选择专题:强国活动视频集")

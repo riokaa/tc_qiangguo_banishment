@@ -67,7 +67,7 @@ function mod_执行阅读文章(mode)
     var guichu_time = 1000
     for(var i = 0; i < read_time/guichu_time; i++)
         websmoothscroll((rnd(0,1)*2-1)*50+5)
-        if(i % 30 == 0)
+        if(i % 30 == 0 && !bs_vip)
             webmovemouse()  //动动鼠标
         end
         sleep(guichu_time)

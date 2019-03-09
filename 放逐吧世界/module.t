@@ -6,6 +6,12 @@
     logi("提示: 如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
     threadbegin("mod_获取视频列表分发", "")
     while(true)
+        if(bs_vip)
+            //vip功能
+            threadresume(proThread_mouseMove)
+        else
+            threadsuspend(proThread_mouseMove)
+        end
         mod_获取积分情况()
         if(score[3] < score_max_limit[3])  //文章学习时长(优先时长)
             mod_执行阅读文章("time")
@@ -133,4 +139,12 @@ function mod_获取视频列表分发()
     logi("视频列表获取成功.")
     vdo_list = response["data"]
     return true
+end
+
+function promod_鼠标光标人性化移动()
+    while(true)
+        logd("Pro: mouse move.")
+        webmovemousepro()
+        sleep(rnd(5, 30) * 1000)
+    end
 end

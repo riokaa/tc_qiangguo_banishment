@@ -50,7 +50,7 @@ function tab_选择改变()
     var _tab = tabgetcursel("tab")
     if(_tab == 2)
         if(webgeturl("web_公告") == "")
-            webgo("web_公告", "http://verify.rayiooo.top/index.php?m=applib&c=appweb&open_new=&a=new_list&list=10001")
+            webgo("web_公告", url_public)
         end
     end
 end
@@ -77,7 +77,7 @@ function user_act_点击()
 end
 
 function user_getPro_点击()
-    
+    controlopenwindow("user_pay")
 end
 
 function test()

@@ -1,4 +1,10 @@
-﻿
+﻿function user_login_初始化()
+    hotkeyregister("lg_hot_enter", "user_login")
+end
+function user_login_销毁()
+    hotkeydestroy("lg_hot_enter", "user_login")
+end
+
 function lg_auto_login()
     var _user = filereadini("USER", "User", path_config)
     var _pwd = filereadini("USER", "Pwd", path_config)

@@ -81,8 +81,8 @@ function mod_获取积分情况()
     logi("我的积分页面加载完毕.")
     var result = array()
     while(arraysize(result) == 0)
-		result = webhtmlget("web", "innerHtml", "class:my-points-content")
-		result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)
+        result = webhtmlget("web", "innerHtml", "class:my-points-content")
+        result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)
         sleep(800)
     end
     logd("每日登陆积分: " & result[0])
@@ -155,14 +155,14 @@ end
 function promod_滚轮人性化滚动()
     while(true)
         logd("Hi Pro.")
-		if(!bs_vip)
-			//非pro
+        if(!bs_vip)
+            //非pro
             sleep(1000)
-			websmoothscroll((rnd(0,1)*2-1) * 50 + 5)
-		else
-			//pro
-			sleep(rnd(1, 20) * 1000)
-			webrandomscroll((rnd(0,1)*2-1) * (rnd(20, 500)) + 20)
-		end
+            websmoothscroll((rnd(0,1)*2-1) * 50 + 5)
+        else
+            //pro
+            sleep(rnd(1, 20) * 1000)
+            webrandomscroll((rnd(0,1)*2-1) * (rnd(20, 500)) + 20)
+        end
     end
 end

@@ -1,5 +1,9 @@
 ﻿function user_register_初始化()
+    hotkeyregister("reg_hot_enter", "user_register")
     threadbegin("reg_coode_pic_左键单击", "")
+end
+function user_register_销毁()
+    hotkeydestroy("reg_hot_enter", "user_register")
 end
 
 function reg_coode_pic_左键单击()

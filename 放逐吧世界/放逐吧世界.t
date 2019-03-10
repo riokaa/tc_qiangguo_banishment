@@ -47,7 +47,7 @@ function main_UIInit()
     gridfill("excel")  //表格填满初始化
     picturesetpicture("rikka_img", path_cur & "\\img\\rikka.png")
     picturesetpicture("user_img_rikka", path_cur & "\\img\\jyaoushingan_100x.png")
-    picturesetpicture("user_img_cloud", path_cur & "\\img\\clouds\\cloud_" & rnd(1,5) & ".png")
+    picturesetpicture("user_img_cloud", path_cur & "\\img\\clouds\\cloud_" & rnd(1, 6) & ".png")
 end
 
 function tab_选择改变()
@@ -63,11 +63,9 @@ end
 function user_login_点击()
     controlopenwindow("user_login")
 end
-
 function user_reg_点击()
     controlopenwindow("user_register")
 end
-
 function user_exit_点击()
     if(bs_注销登陆() == 1)
         bs_user = ""
@@ -78,13 +76,15 @@ function user_exit_点击()
         bsmod_刷新用户信息()
     end
 end
-
 function user_act_点击()
     controlopenwindow("user_activate")
 end
-
 function user_getPro_点击()
     controlopenwindow("user_pay")
+end
+function user_pro_detail_点击()
+    url_browser = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_info&id=85"
+    controlopenwindow("user_browser")
 end
 
 function set_apply_点击()
@@ -110,6 +110,12 @@ function set_apply_success_thread()
     buttonsettext("set_apply", "应用")
 end
 
+function about_feedback_点击()
+    url_browser = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=feedback&daihao=10000000&uid=" & bs_user & "&table=快捷反馈&leix=feedback"
+    controlopenwindow("user_browser")
+end
+
 function test()
     
 end
+

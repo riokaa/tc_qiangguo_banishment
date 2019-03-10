@@ -45,7 +45,9 @@ function main_UIInit()
     windowsetcaption(mainHwnd, "Banishment 放逐这个世界  " & version)  //窗口标题修改
     settray("Banishment", false)  //托盘设置
     gridfill("excel")  //表格填满初始化
-    picturesetpicture("rikka_img", path_cur & "\\img\\Rikka.png")
+    picturesetpicture("rikka_img", path_cur & "\\img\\rikka.png")
+    picturesetpicture("user_img_rikka", path_cur & "\\img\\jyaoushingan_100x.png")
+    picturesetpicture("user_img_cloud", path_cur & "\\img\\clouds\\cloud_" & rnd(1,5) & ".png")
 end
 
 function tab_选择改变()

@@ -76,6 +76,9 @@ function user_exit_点击()
         bsmod_刷新用户信息()
     end
 end
+function user_changePwd_点击()
+    controlopenwindow("user_changepwd")
+end
 function user_act_点击()
     controlopenwindow("user_activate")
 end
@@ -84,7 +87,8 @@ function user_getPro_点击()
 end
 function user_pro_detail_点击()
     url_browser = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_info&id=85"
-    controlopenwindow("user_browser")
+    var _hwnd = controlopenwindow("user_browser")
+    windowsetcaption(_hwnd, "Pro功能")
 end
 
 function set_apply_点击()
@@ -112,10 +116,13 @@ end
 
 function about_feedback_点击()
     url_browser = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=feedback&daihao=10000000&uid=" & bs_user & "&table=快捷反馈&leix=feedback"
-    controlopenwindow("user_browser")
+    var _hwnd = controlopenwindow("user_browser")
+    windowsetcaption(_hwnd, "快捷反馈  联系方式请填邮箱~")
 end
 
 function test()
     
 end
+
+
 

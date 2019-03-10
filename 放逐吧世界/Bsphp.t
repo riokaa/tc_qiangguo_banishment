@@ -115,6 +115,18 @@ function bs_心跳包()
     return bs_发送api请求("timeout.lg", _req)
 end
 
+function bs_修改密码(user, pwd, pwda, pwdb, img="")
+    var _req = array()
+    _req[0] = "user=" & user
+    _req[1] = "pwd=" & pwd
+    _req[2] = "pwda=" & pwda
+    _req[3] = "pwdb=" & pwdb
+    if(img != "")
+        _req[4] = "img=" & img
+    end
+    return bs_发送api请求("password.lg", _req)
+end
+
 function bs_注册(user, pwd, pwdb, email, coode)
     var _req = array()
     _req[0] = "user=" & user

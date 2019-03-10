@@ -2,17 +2,18 @@
     controlshow("user_login", false, "放逐吧世界")
     controlshow("user_reg", false, "放逐吧世界")
     controlshow("user_exit", true, "放逐吧世界")
+    controlenable("user_act", true)
     controlenable("user_changePwd", true)
     staticsettext("label_user", bs_user)
     staticsettext("label_vipDate", bs_vipDate)
     if(bs_vip)
         staticsetcolor("label_vipStatus", "#00ff00")
         staticsettext("label_vipStatus", "邪王真眼健在√")
-		controlenable("about_feedback", true)
+        controlenable("about_feedback", true)
     else
         staticsetcolor("label_vipStatus", "#ff0000")
         staticsettext("label_vipStatus", "已到期")
-		controlenable("about_feedback", false)
+        controlenable("about_feedback", false)
     end
     logi("你好," & bs_user & ".")
 end
@@ -24,8 +25,9 @@ function bsmod_登陆失败后处理()
     controlshow("user_login", true, "放逐吧世界")
     controlshow("user_reg", true, "放逐吧世界")
     controlshow("user_exit", false, "放逐吧世界")
+    controlenable("about_feedback", false)
+    controlenable("user_act", false)
     controlenable("user_changePwd", false)
-	controlenable("about_feedback", false)
 end
 
 function bsmod_刷新用户信息()

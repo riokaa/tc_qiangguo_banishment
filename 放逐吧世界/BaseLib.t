@@ -5,8 +5,6 @@
         var _res = folderdelete(path_temp)
         if(_res == 1)
             logi("残留的临时文件已清理.")
-        else
-            logw("临时文件清理失败!")
         end
     end
     filewriteini("EXE", "TempPath", path_rc, path_config)

@@ -17,7 +17,7 @@ function mod_执行观看视频(mode)
     end
     
     //执行鬼畜观看
-    var watch_time = 300000
+    var watch_time = 500000
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
         if(bs_vip)

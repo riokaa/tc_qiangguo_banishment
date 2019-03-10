@@ -52,7 +52,7 @@ function mod_执行阅读文章(mode)
     sleep(800)
     
     //执行鬼畜阅读
-    var read_time = 240000
+    var read_time = 300000
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
         if(bs_vip)

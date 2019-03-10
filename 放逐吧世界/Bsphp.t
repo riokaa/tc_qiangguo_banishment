@@ -87,6 +87,11 @@ function bs_取登陆状态信息()
     return bs_发送api请求("lginfo.lg", _req)
 end
 
+function bs_取软件版本信息()
+    var _req = array()
+    return bs_发送api请求("v.in", _req)
+end
+
 function bs_取用户信息(info)
     var _req = array()
     _req[0] = "info="

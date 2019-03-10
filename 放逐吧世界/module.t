@@ -113,14 +113,8 @@ function mod_检查更新()
     if(response["data"]["version"] == version)
         logd("没有新版本发布.")
     else
-        logi(" (╯#-_-)╯~~~~~~~~~~~~~~~~~~~~~~~~~~~╧═╧ ")
-        logi("")
-        logi("下载地址（复制到浏览器打开）：" & response["data"]["download"])
-        logi("更新内容：" & response["data"]["update_content"])
-        logi("发现软件新版本 " & response["data"]["version"] & "")
-        logi("")
-        logi(" (╯#-_-)╯~~~~~~~~~~~~~~~~~~~~~~~~~~~╧═╧ ")
-        messagebox("发现新版本啦！请到控制台中查看。")
+        messagebox("发现新版本啦！请到公告栏中查看。", "检查更新")
+        logi("发现新版本: " & response["data"]["version"])
     end
     return true
 end

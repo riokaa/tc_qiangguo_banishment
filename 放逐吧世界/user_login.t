@@ -6,6 +6,7 @@ function user_login_销毁()
 end
 
 function lg_auto_login()
+    sleep(500)
     var _user = filereadini("USER", "User", path_config)
     var _pwd = filereadini("USER", "Pwd", path_config)
     if(_user == "" || _pwd == "")

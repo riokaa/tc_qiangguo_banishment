@@ -3,9 +3,10 @@
     var path_temp = filereadini("EXE", "TempPath", path_config)
     if(path_temp != "")
         var _res = folderdelete(path_temp)
-        logd("删除临时文件:" & _res)
         if(_res == 1)
             logi("残留的临时文件已清理.")
+        else
+            logw("临时文件清理失败!")
         end
     end
     filewriteini("EXE", "TempPath", path_rc, path_config)

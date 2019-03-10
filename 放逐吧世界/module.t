@@ -6,6 +6,12 @@
     logi("提示: 如果无法正常运行，尝试更新本机IE浏览器到最新版本。")
     threadbegin("mod_获取视频列表分发", "")
     while(true)
+        if(bs_vip)
+            //vip功能
+            threadresume(proThread_mouseMove)
+        else
+            threadsuspend(proThread_mouseMove)
+        end
         mod_获取积分情况()
         if(score[3] < score_max_limit[3])  //文章学习时长(优先时长)
             mod_执行阅读文章("time")
@@ -22,7 +28,7 @@
     end
     logi("恭喜你!今日网页端任务已全部完成.")
     buttonsettext("startBtn", "开始执行")
-    if(auto_shutdown)
+    if(settings_auto_shutdown)
         logi("10秒后将执行自动关机操作.")
         sleep(10000)
         sysshutdown(0)
@@ -51,13 +57,14 @@ function mod_表格写(result)
     gridsetcontent("excel", 3, 1, result[2])
     gridsetcontent("excel", 4, 1, result[3])
     gridsetcontent("excel", 5, 1, result[4])
-    var fenmu = 1, fenzi = 0
+    var fenmu = 0, fenzi = 0
     for(var i = 0; i < arraysize(score_max_limit); i++)
         fenmu = fenmu + score_max_limit[i]
         fenzi = fenzi + score[i]
     end
     var percent = int(fenzi*100/fenmu)
     progresssetprogress("bar", percent)
+    //settraytip("进度：" & fenzi & "/" & fenmu)
     logd(fenzi & "/" & fenmu & "=" & percent & "%")
 end
 
@@ -72,8 +79,12 @@ function mod_获取积分情况()
     end
     sleep(800)
     logi("我的积分页面加载完毕.")
-    var result = webhtmlget("web", "innerHtml", "class:my-points-content")
-    result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)
+    var result = array()
+    while(arraysize(result) == 0)
+        result = webhtmlget("web", "innerHtml", "class:my-points-content")
+        result = regexmatchtext(result, "([0-9]+分/[0-9]+分)", false, true, true, true)
+        sleep(800)
+    end
     logd("每日登陆积分: " & result[0])
     logd("阅读文章积分: " & result[1])
     logd("观看视频积分: " & result[2])
@@ -102,14 +113,8 @@ function mod_检查更新()
     if(response["data"]["version"] == version)
         logd("没有新版本发布.")
     else
-        logi(" (╯#-_-)╯~~~~~~~~~~~~~~~~~~~~~~~~~~~╧═╧ ")
-        logi("")
-        logi("下载地址（复制到浏览器打开）：" & response["data"]["download"])
-        logi("更新内容：" & response["data"]["update_content"])
-        logi("发现软件新版本 " & response["data"]["version"] & "")
-        logi("")
-        logi(" (╯#-_-)╯~~~~~~~~~~~~~~~~~~~~~~~~~~~╧═╧ ")
-        messagebox("发现新版本啦！请到控制台中查看。")
+        messagebox("发现新版本啦！请到公告栏中查看。", "检查更新")
+        logi("发现新版本: " & response["data"]["version"])
     end
     return true
 end
@@ -132,4 +137,26 @@ function mod_获取视频列表分发()
     logi("视频列表获取成功.")
     vdo_list = response["data"]
     return true
+end
+
+function promod_鼠标光标人性化移动()
+    while(true)
+        sleep(rnd(5, 30) * 1000)
+        webmovemousepro()
+    end
+end
+
+function promod_滚轮人性化滚动()
+    while(true)
+        logd("Hi Pro.")
+        if(!bs_vip)
+            //非pro
+            sleep(1000)
+            websmoothscroll((rnd(0,1)*2-1) * 50 + 5)
+        else
+            //pro
+            sleep(rnd(1, 20) * 1000)
+            webrandomscroll((rnd(0,1)*2-1) * (rnd(20, 500)) + 20)
+        end
+    end
 end

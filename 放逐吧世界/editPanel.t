@@ -1,21 +1,5 @@
 ﻿var control_text = ""
 
-//var editcontent = array("", "", "", "", "", "", "", "", "", "", "", "")
-//var editline = 12
-//从下往上的无滚动条的控制台
-//function editadd(content)
-//    for(var i = 0; i < editline - 1; i++)
-//        editcontent[i] = editcontent[i+1]
-//    end
-//    editcontent[editline - 1] = content
-//    var control_text = ""
-//    for(var i = 0; i < editline - 1; i++)
-//        control_text = control_text & editcontent[i] & "\r\n"
-//    end
-//    control_text = control_text & editcontent[editline - 1]
-//    editsettext("控制台", control_text)
-//end
-
 function editadd(content)
     if(strlen(control_text) > 10000)
         control_text = ""
@@ -23,4 +7,17 @@ function editadd(content)
     end
     control_text = content & "\r\n" & control_text
     editsettext("控制台", control_text)
+end
+
+function editInit()
+    editadd("本软件『完全可以免费使用』。")
+    editadd("")
+    editadd("如无法正常使用，请更新IE浏览器至最新版本。")
+    editadd("")
+    editadd("多开方式：使用Sandbox（沙盘）软件进行多开。")
+    editadd("网页缩放：Ctrl键 + 滚轮（非必要）。")
+    editadd("使用方式：扫码登陆后执行。")
+    editadd("")
+    editadd("***  软件版本：" & version & "  ***")
+    editadd("")
 end

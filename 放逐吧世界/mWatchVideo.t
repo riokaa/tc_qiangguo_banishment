@@ -3,41 +3,44 @@ function mod_执行观看视频(mode)
     
     logi("*** 执行观看视频 ***")
     
+    var success = false
     //随机进入视频网页
     if(arraysize(vdo_list) > 0)
         logd("有分发视频!可以尽情观看了.")
-        goLocalVdoPage()
+        success = goLocalVdoPage()
     else
         logi("没有分发视频,进入离线选择视频模式.")
-        goCenterVdoPage()
+        success = goCenterVdoPage()
+    end
+    if(!success)
+        return false
     end
     
     //执行鬼畜观看
-    var watch_minute = 5
+    var watch_time = 500000
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
-        watch_minute = rnd(4, 6)
+        if(bs_vip)
+            watch_time = watch_time * rnd(90, 125) / 100
+        end
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")
-        watch_minute = 1
+        watch_time = 60000
+        if(bs_vip)
+            watch_time = watch_time + rnd(-20, 0) * 1000
+        end
     else
         loge("mod_执行观看视频:错误的mode格式")
     end
-    logi("开始执行观看 - " & watch_minute & " - 分钟（即使不播放视频也可以积分）.")
+    logi("开始执行观看 - " & (watch_time/60000.0) & " - 分钟（即使不播放视频也可以积分）.")
     logi("Banishment this world!")
-    for(var i = watch_minute; i > 0; i--)
-        webmovemouse()  //动动鼠标
-        logi("观看剩余" & i & "分钟.")
-        var read_time = 60000
-        var guichu_time = 1000
-        for(var j = 0; j < read_time/guichu_time; j++)
-            websmoothscroll((rnd(0,1)*2-1)*50+5)
-            sleep(guichu_time)
-        end
-    end
+    threadresume(proThread_scroll)
+    sleep(watch_time)
+    threadsuspend(proThread_scroll)
     
     logi("视频观看完毕!")
     sleep(1000)
+    return true
 end
 
 function goLocalVdoPage()
@@ -45,6 +48,7 @@ function goLocalVdoPage()
     logd("vdo_list.length : " & arraysize(vdo_list))
     
     if(arrayfindkey(vdo_list, vdo_list_num) == -1|| vdo_list_num < 0)
+        loge("进入地方视频页失败!")
         return false
     end
     
@@ -87,7 +91,7 @@ function goCenterVdoPage()
     webhtmlclick("web", "value:第一频道")
     sleep(500)
     var random_num = rnd(1,3)
-    webmovemouse()  //动动鼠标
+    //webmovemouse()  //动动鼠标
     select(random_num)
         case 1
         logi("随机选择专题:强国活动视频集")
@@ -113,20 +117,20 @@ function goCenterVdoPage()
     var regTitleEnd = "</div>"
     result = regexmatchtext(result, regTitleBefore & regTitle & regTitleEnd, false, true, true, true)  //获取所有视频标题
     logi("此页面共获取到" & arraysize(result) & "条视频.")
+    if(arraysize(result) == 0)
+        loge("视频列表获取失败!")
+        return false
+    end
     
-    //var result_id = array()
     var result_title = array()
     for(var i = 0; i < arraysize(result); i++)
         result_title[i] = regexmatchtext(result[i], regTitle, false, true, true, true)  //提取标题
-        //result_id[i] = regexmatchtext(result[i], "id=\"[0-9a-zA-Z]+\"", false, true, true, true)
-        //result_id[i] = regexmatchtext(result_id[i], "[0-9a-zA-Z]{10,}", false, true, true, true)  //提取标题id
     end
     logd("result_title: " & result_title)
     sleep(500)
     
     //随机选择视频并通过js点击的方法进入
     var randomNum = rnd(0, arraysize(result) - 1)
-    //var randomArticleId = result_id[randomNum][0]
     var randomArticleTitle = result_title[randomNum][0]
     logi("观看随机视频\"" & randomArticleTitle & "\"中....")
     //js代码点击相应标题的视频
@@ -142,4 +146,6 @@ function goCenterVdoPage()
         sleep(500)
     end
     sleep(800)
+    
+    return true
 end

@@ -52,26 +52,26 @@ function mod_执行阅读文章(mode)
     sleep(800)
     
     //执行鬼畜阅读
-    var read_time = 240000
+    var read_time = 300000
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
-        read_time = 60000 * rnd(3, 5)
+        if(bs_vip)
+            read_time = read_time * rnd(90, 125) / 100
+        end
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")
-        read_time = 60000 + rnd(-15, 15) * 1000
+        read_time = 60000
+        if(bs_vip)
+            read_time = read_time + rnd(-20, 0) * 1000
+        end
     else
         loge("mod_执行阅读文章:错误的mode格式")
     end
-    logi("开始执行阅读 - " & int(read_time/60000) & " - 分钟.")
+    logi("开始执行阅读 - " & (read_time/60000.0) & " - 分钟.")
     logi("Banishment this world!")
-    var guichu_time = 1000
-    for(var i = 0; i < read_time/guichu_time; i++)
-        websmoothscroll((rnd(0,1)*2-1)*50+5)
-        if(i % 30 == 0)
-            webmovemouse()  //动动鼠标
-        end
-        sleep(guichu_time)
-    end
+    threadresume(proThread_scroll)
+    sleep(read_time)
+    threadsuspend(proThread_scroll)
     
     logi("文章阅读完毕!")
     sleep(2000)

@@ -61,9 +61,9 @@ function bs_发送api请求(apiname, param)
         return "Api请求数据包验证失败! "
     end
     if(_response["appsafecode"] != _safecode)
-        loge("Api请求数据包被劫持! 即将自闭。")
-        threadbegin("destroyMyself", "")
-        return "Api请求数据包被劫持! 即将自闭。"
+        loge("Api请求数据包被劫持! ")
+        //threadbegin("destroyMyself", "")
+        //return "Api请求数据包被劫持! 即将自闭。"
     end
     
     //logd("Api请求成功!")

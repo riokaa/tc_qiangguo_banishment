@@ -28,6 +28,10 @@
     end
     logi("恭喜你!今日网页端任务已全部完成.")
     buttonsettext("startBtn", "开始执行")
+    if(settings_auto_close)
+        logi("即将执行自动关闭程序操作.")
+        threadbegin("destroyMyself", "")
+    end
     if(settings_auto_shutdown)
         logi("10秒后将执行自动关机操作.")
         sleep(10000)

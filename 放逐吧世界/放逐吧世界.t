@@ -92,16 +92,28 @@ function user_pro_detail_点击()
 end
 
 function set_apply_点击()
+	//自动关程序
+    if(checkgetstate("set_autoclose"))
+        if(!settings_auto_close)
+            settings_auto_close = true
+            logi("设置: 积分刷满后自动关闭程序开启.")
+        end
+    else
+        if(settings_auto_close)
+            settings_auto_close = false
+            logi("设置: 积分刷满后自动关闭程序关闭.")
+        end
+    end
     //自动关机
     if(checkgetstate("set_autoshutdown"))
         if(!settings_auto_shutdown)
             settings_auto_shutdown = true
-            logi("设置：自动关机功能开启。")
+            logi("设置: 积分刷满后自动关机开启.")
         end
     else
         if(settings_auto_shutdown)
             settings_auto_shutdown = false
-            logi("设置：自动关机功能关闭。")
+            logi("设置: 积分刷满后自动关机关闭.")
         end
     end
     

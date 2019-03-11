@@ -4,6 +4,7 @@ var author = "板san."
 var DEBUG = false
 var score = array(0, 0, 0, 0, 0)
 var score_max_limit = array(1, 6, 6, 8, 10)
+var settings_auto_close = false
 var settings_auto_shutdown = false
 var url_learntv = "https://www.xuexi.cn/4426aa87b0b64ac671c96379a3a8bd26/db086044562a57b441c24f2af1c8e101.html"
 var url_main = "https://www.xuexi.cn/"
@@ -12,8 +13,8 @@ var url_pay = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_info&
 var url_public = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&open_new=&a=new_list&list=10001"
 var vdo_list = array()  //json格式视频分发数据
 var vdo_list_num = 0
-var version = "v2.0"
-var version_date = "2019.3.10"
+var version = "v2.0.1"
+var version_date = "2019.3.11"
 
 var path_config
 var path_cur

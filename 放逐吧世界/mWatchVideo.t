@@ -17,11 +17,11 @@ function mod_执行观看视频(mode)
     end
     
     //执行鬼畜观看
-    var watch_time = 500000
+    var watch_time = 60000 * rnd(7, 9)
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
         if(bs_vip)
-            watch_time = watch_time * rnd(90, 125) / 100
+            watch_time = watch_time * rnd(80, 130) / 100
         end
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")

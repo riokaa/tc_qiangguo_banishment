@@ -21,13 +21,13 @@ function mod_执行观看视频(mode)
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
         if(bs_vip)
-            watch_time = watch_time * rnd(80, 130) / 100
+            watch_time = watch_time * rnd(60, 150) / 100
         end
     elseif(mode == "amount")  //挂数量模式
         logd("模式:挂数量.")
         watch_time = 60000
         if(bs_vip)
-            watch_time = watch_time + rnd(-20, 0) * 1000
+            watch_time = watch_time + rnd(-20, 10) * 1000
         end
     else
         loge("mod_执行观看视频:错误的mode格式")

@@ -103,22 +103,12 @@ function mod_获取积分情况()
 end
 
 function mod_检查更新()
-    var requestMode = "get"
-    var requestUrl = "http://api.rayiooo.top/banishment/version.php?version=" & version
-    var response = httpsubmit(requestMode, requestUrl, "", "utf-8")
-    logd("检查更新response: " & response)
-    if(response == null || !isjson(response))
-        return false
-    end
-    response = jsontoarray(response)
-    if(response["message"] != "ok")
-        return false
-    end
-    if(response["data"]["version"] == version)
+    var response = bs_取软件版本信息()
+    if(response == version)
         logd("没有新版本发布.")
     else
-        messagebox("发现新版本啦！请到公告栏中查看。", "检查更新")
-        logi("发现新版本: " & response["data"]["version"])
+		picturesetpicture("img_newversion", path_cur & "\\img\\newversion.png")
+        logi("发现新版本: " & response & ".更新日志见公告栏.")
     end
     return true
 end

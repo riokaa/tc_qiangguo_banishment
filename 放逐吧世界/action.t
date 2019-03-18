@@ -1,4 +1,7 @@
-﻿function webmovemouse()  //防封性质的动动鼠标
+﻿var action_mouse_x = 100
+var action_mouse_y = 100
+
+function webmovemouse()  //防封性质的动动鼠标
     //var x = rnd(1, 500)
     //var y = rnd(1, 500)
     //webmoveto("web", x, y)
@@ -6,8 +9,8 @@
 end
 
 function webmovemousepro()
-    var x1 = rnd(1,1000)
-    var y1 = rnd(1,1000)
+    var x1 = action_mouse_x
+    var y1 = action_mouse_y
     var x2 = rnd(1,1000)
     var y2 = rnd(1,1000)
     var freq = 30
@@ -19,6 +22,8 @@ function webmovemousepro()
         y1 = y1 + dety
         sleep(20)
     end
+    action_mouse_x = x2
+    action_mouse_y = y2
     sleep(200)
 end
 

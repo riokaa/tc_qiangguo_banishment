@@ -29,15 +29,15 @@ function 放逐吧世界_初始化()
     //thread options
     proThread_mouseMove = threadbegin("promod_鼠标光标人性化移动", "")
     proThread_scroll = threadbegin("promod_滚轮人性化滚动", "")
+    //后处理
+    sleep(500)
+    threadsuspend(proThread_mouseMove)
+    threadsuspend(proThread_scroll)
     //module options
     threadbegin("cleanTrash", "")
     threadbegin("mod_开始时滚动网页到二维码","")
     threadbegin("mod_检查更新","")
     threadbegin("lg_auto_login", "")
-    //后处理
-    sleep(500)
-    threadsuspend(proThread_mouseMove)
-    threadsuspend(proThread_scroll)
     //test()
 end
 

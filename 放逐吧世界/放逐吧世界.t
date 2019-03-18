@@ -48,6 +48,15 @@ function main_UIInit()
     picturesetpicture("rikka_img", path_cur & "\\img\\rikka.png")
     picturesetpicture("user_img_rikka", path_cur & "\\img\\jyaoushingan_100x.png")
     picturesetpicture("user_img_cloud", path_cur & "\\img\\clouds\\cloud_" & rnd(1, 6) & ".png")
+    //settings
+    if(filereadini("SETTINGS", "AutoClose", path_config) == "1")
+        settings_auto_close = true
+        checksetstate("set_autoclose", true)
+    end
+    if(filereadini("SETTINGS", "AutoShutdown", path_config) == "1")
+        settings_auto_shutdown = true
+        checksetstate("set_autoshutdown", true)
+    end
 end
 
 function tab_选择改变()
@@ -92,15 +101,17 @@ function user_pro_detail_点击()
 end
 
 function set_apply_点击()
-	//自动关程序
+    //自动关程序
     if(checkgetstate("set_autoclose"))
         if(!settings_auto_close)
             settings_auto_close = true
+            filewriteini("SETTINGS", "AutoClose", "1", path_config)
             logi("设置: 积分刷满后自动关闭程序开启.")
         end
     else
         if(settings_auto_close)
             settings_auto_close = false
+            filewriteini("SETTINGS", "AutoClose", "0", path_config)
             logi("设置: 积分刷满后自动关闭程序关闭.")
         end
     end
@@ -108,11 +119,13 @@ function set_apply_点击()
     if(checkgetstate("set_autoshutdown"))
         if(!settings_auto_shutdown)
             settings_auto_shutdown = true
+            filewriteini("SETTINGS", "AutoShutdown", "1", path_config)
             logi("设置: 积分刷满后自动关机开启.")
         end
     else
         if(settings_auto_shutdown)
             settings_auto_shutdown = false
+            filewriteini("SETTINGS", "AutoShutdown", "0", path_config)
             logi("设置: 积分刷满后自动关机关闭.")
         end
     end

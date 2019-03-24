@@ -14,6 +14,7 @@ function startBtn_点击()
     elseif(buttongettext("startBtn") == "停止执行")
         if(threadclose(mainThread))
             threadsuspend(proThread_mouseMove)
+            threadsuspend(proThread_scroll)
             buttonsettext("startBtn", "开始执行")
         end
     end

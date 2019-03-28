@@ -1,5 +1,6 @@
 ﻿function user_login_初始化()
     hotkeyregister("lg_hot_enter", "user_login")
+    picturesetpicture("lg_img", path_cur & "\\img\\rikka.png", "user_login")
 end
 function user_login_销毁()
     hotkeydestroy("lg_hot_enter", "user_login")

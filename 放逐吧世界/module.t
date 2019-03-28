@@ -96,6 +96,8 @@ function mod_获取积分情况()
     logd("视频学习时长积分: " & result[4])
     for(var i = 0; i < 5; i++)
         score[i] = int(strleft(result[i], strfind(result[i], "/") - 1))
+        score_max_limit[i] = int(strsub(result[i], strfind(result[i], "/") + 1, strlen(result[i]) - 1))
+        logd("最大积分" & i & ": " & score_max_limit[i])
     end
     logi("积分情况获取完毕.")
     threadbegin("mod_表格写", result)
@@ -107,7 +109,7 @@ function mod_检查更新()
     if(response == version)
         logd("没有新版本发布.")
     else
-		picturesetpicture("img_newversion", path_cur & "\\img\\newversion.png")
+        picturesetpicture("img_newversion", path_cur & "\\img\\newversion.png")
         logi("发现新版本: " & response & ".更新日志见公告栏.")
     end
     return true

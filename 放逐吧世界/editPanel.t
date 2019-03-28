@@ -1,7 +1,7 @@
 ﻿var control_text = ""
 
 function editadd(content)
-    if(strlen(control_text) > 10000)
+    if(strlen(control_text) > 30000)
         control_text = ""
         logi("控制台自动清理完毕.")
     end

@@ -1,5 +1,6 @@
 ﻿function user_register_初始化()
     hotkeydestroy("reg_hot_enter", "user_register")
+    picturesetpicture("reg_img", path_cur & "\\img\\rikka.png", "user_register")
     //hotkeyregister("reg_hot_enter", "user_register")
     reg_coode_pic_左键单击()
 end

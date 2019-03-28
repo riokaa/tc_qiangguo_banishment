@@ -16,8 +16,11 @@ function mod_执行观看视频(mode)
         return false
     end
     
+    //点开视频
+    //var js_clickrandomarticle = "function getElementsByClassName(node,classname) {if (node.getElementsByClassName) {return node.getElementsByClassName(classname);} else {return (function getElementsByClass(searchClass,node) {if ( node == null )node=document;var classElements=[],els = node.getElementsByTagName(\"*\"),elsLen=els.length,pattern=new RegExp(\"(^|\\s)\"+searchClass+\"(\\s|$)\"), i, j;for (i = 0, j = 0; i < elsLen; i++) {if ( pattern.test(els[i].className) ) {classElements[j] = els[i]; j++;}}return classElements;})(classname, node);}}"
+    //js_clickrandomarticle = js_clickrandomarticle & "var elements=getElementsByClassName(document, \"prism-big-play-btn\");elements[0].click();"
     //执行鬼畜观看
-    var watch_time = 60000 * rnd(7, 9)
+    var watch_time = 60000 * 3
     if(mode == "time")  //挂时长模式
         logd("模式:挂时长.")
         if(bs_vip)

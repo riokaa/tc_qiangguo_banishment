@@ -8,7 +8,7 @@
 <Platform>pc</Platform>
 </ProjInfo>
 <DesignInfo>
-<LockedCtrl>窗口: 放逐吧世界 tab|bar|控制台|startBtn|excel|web|rikka_img|分组框0|user_pro_detail|user_img_cloud|user_exit|user_act|user_changePwd|user_getPro|user_reg|user_login|label_vipDate|标签9|label_vipStatus|label_user|标签8|标签7|user_img_rikka|分组框1|分组框2|web_公告|set_apply|set_novoice|set_autoshutdown|分组框3| 窗口结束窗口: user_login 图片框1|标签5|标签3| 窗口结束窗口: user_activate lg_forget|lg_warn|标签5|lg_pwd|lg_user|标签3|lg_login| 窗口结束</LockedCtrl>
+<LockedCtrl>窗口: 放逐吧世界 tab|bar|控制台|startBtn|excel|web|rikka_img|分组框0|user_pro_detail|user_img_cloud|user_exit|user_act|user_changePwd|user_getPro|user_reg|user_login|label_vipDate|标签9|label_vipStatus|label_user|标签8|标签7|user_img_rikka|分组框1|分组框2|web_公告|set_apply|set_novoice|set_autoshutdown|分组框3| 窗口结束窗口: user_login lg_img|标签5|标签3| 窗口结束窗口: user_activate lg_forget|lg_warn|标签5|lg_pwd|lg_user|标签3|lg_login| 窗口结束</LockedCtrl>
 </DesignInfo>
 <VersionInfo>
 <ProductName>Banishment</ProductName>

@@ -2,3 +2,4 @@
 生成/
 编译/
 打包/config/Config.ini
+打包/*.exe

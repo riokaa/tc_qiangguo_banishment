@@ -13,8 +13,8 @@ var url_pay = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&a=new_info&
 var url_public = "http://verify.rayiooo.top/index.php?m=applib&c=appweb&open_new=&a=new_list&list=10001"
 var vdo_list = array()  //json格式视频分发数据
 var vdo_list_num = 0
-var version = "v2.0.3"
-var version_date = "2019.3.28"
+var version = "v2.0.4"
+var version_date = "2019.4.16"
 
 var path_config
 var path_cur

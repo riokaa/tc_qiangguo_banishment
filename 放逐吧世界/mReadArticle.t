@@ -13,12 +13,16 @@ function mod_执行阅读文章(mode)
     logi("\"主页\"页面加载完毕.")
     
     //读取页面新闻标题们
-    var result = webhtmlget("web", "innerHtml", "class:screen")
+    var result = webhtmlget("web", "innerHtml", "id:root")
+    while(strfind(result, "<div class=\"text-wrap\"") == -1)
+        sleep(1000)
+        result = webhtmlget("web", "innerHtml", "id:root")
+    end
     var result_id = array()
     var result_title = array()
-    var regInFrontOfTitle = "<div\\stitle=\"\"\\sclass=\"word-item\"\\sid=\"[0-9a-zA-Z]+\".*?\">"
+    var regInFrontOfTitle = "<div\\sclass=\"text-wrap\".*?><span\\sclass=\"text\".*?>"
     var regTitle = "([\\x{4e00}-\\x{9fa5}]|[0-9]|[\"|\\x{300a}|\\x{300b}|\\x{2014}|\\x{ff0c}|\\x{201c}|\\x{201d}|\\x{3001}]){9,}([\\x{4e00}-\\x{9fa5}]|[\"|\\x{300a}|\\x{300b}|\\x{2014}|\\x{ff0c}|\\x{201c}|\\x{201d}|\\x{3001}])"
-    var regBehindTitle = "</div>"
+    var regBehindTitle = "</span></div>"
     result = regexmatchtext(result, regInFrontOfTitle & regTitle & regBehindTitle, false, true, true, true)  //获取所有文章标题
     logi("当前页面共获取到" & arraysize(result) & "条文章.")
     if(arraysize(result) == 0)
@@ -39,7 +43,7 @@ function mod_执行阅读文章(mode)
     logi("阅读随机文章\"" & randomArticleTitle & "\"中....")
     //js代码点击相应标题的文章
     var js_clickrandomarticle = "function getElementsByClassName(node,classname) {if (node.getElementsByClassName) {return node.getElementsByClassName(classname);} else {return (function getElementsByClass(searchClass,node) {if ( node == null )node=document;var classElements=[],els = node.getElementsByTagName(\"*\"),elsLen=els.length,pattern=new RegExp(\"(^|\\s)\"+searchClass+\"(\\s|$)\"), i, j;for (i = 0, j = 0; i < elsLen; i++) {if ( pattern.test(els[i].className) ) {classElements[j] = els[i]; j++;}}return classElements;})(classname, node);}}"
-    js_clickrandomarticle = js_clickrandomarticle & "function getElementTitleEqualsTo(title){var elements = getElementsByClassName(document, \"word-item\");for(var i=0; i<elements.length;i++){if(elements[i].innerText == title){return elements[i];}}return null;}"
+    js_clickrandomarticle = js_clickrandomarticle & "function getElementTitleEqualsTo(title){var elements = getElementsByClassName(document, \"text-wrap\");for(var i=0; i<elements.length;i++){if(elements[i].innerText == title){return elements[i];}}return null;}"
     js_clickrandomarticle = js_clickrandomarticle & "getElementTitleEqualsTo(\"" & randomArticleTitle & "\").click();"
     webmovemouse()  //动动鼠标
     webrunjs("web", js_clickrandomarticle)
